@@ -94,12 +94,15 @@ function tabtitle() {
 }
 
 export ASANA_PATH=/Users/diego/gocode/src/github.com/dbalseiro/asana
+export gcba_home=~/git/gcaba-io
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias mutt="(tabtitle Mutt; tabcolors 133 153 0; cd ~/garbage && mutt)"
 alias servers="tabtitle Servers; tabcolors 133 153 0; remotes"
 alias databases="tabtitle Databases; tabcolors 133 153 0; databases"
+alias services="tabtitle Servicios; tabcolors 220 50 47; services"
 alias asanaprofile="tabtitle Asana; tabcolors 181 137   0;cd $ASANA_PATH; ./asana-cli"
+alias gcabadev="tabtitle GCABA-IO; tabcolors 108 113 196;cd $gcba_home/source/back-end;vim"
 export EDITOR='vim'
 export GOPATH=~/gocode
 LC_CTYPE=en_US.UTF-8
@@ -108,7 +111,6 @@ LC_ALL=en_US.UTF-8
 tabcolors 203 75 22
 
 export jboss_home=~/jboss-as-7.1.1.Final
-export gcba_home=~/git/gcaba-io
 
 #bindkey -v
 #
