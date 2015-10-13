@@ -124,3 +124,4 @@ export jboss_home=~/jboss-as-7.1.1.Final
 #zle -N zle-keymap-select
 #
 export KEYTIMEOUT=1
+export JAVA_HOME=$(/usr/libexec/java_home)
