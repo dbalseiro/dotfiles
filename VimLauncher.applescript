@@ -22,9 +22,10 @@ on run {input, parameters}
                     set filePath to quoted form of POSIX path of item x of input
                     set launchPaths to launchPaths & " " & filePath
                 end repeat
-                write text ("vim " & launchPaths & "\n")
+                write text ("vim " & launchPaths & " ; exit \n")
             end tell
         end tell
+
     end tell
     
     return input
