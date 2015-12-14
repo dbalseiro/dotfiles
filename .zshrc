@@ -41,7 +41,7 @@ alias databases="tabtitle Databases; tabcolors 133 153 0; databases"
 alias services="tabtitle Servicios; tabcolors 220 50 47; services"
 alias asanaprofile="tabtitle Asana; tabcolors 181 137   0;cd $ASANA_PATH; ./asana-cli"
 alias gcabadev="tabtitle GCABA-IO; tabcolors 108 113 196;cd $gcba_home/source/back-end;vim"
-alias paddev="tabtitle MB-PAD; tabcolors 108 113 196;cd $pad_home/source/back-end;vim"
+alias paddev="tabtitle MB-PAD; tabcolors 108 113 196;cd $pad_home;vim"
 alias lynx="(cd ~/torrents ; lynx)"
 
 export EDITOR='vim'
