@@ -1,0 +1,20 @@
+#!/bin/sh
+echo "$1 $2 $3 $4" >> ~/test.mcabber.log
+EVENT_TYPE=$1
+EVENT_SUBTYPE=$2
+JID=$3
+FILE=$4
+TITLE="Google Hangouts"
+SOUND_FILE="$HOME/.mcabber/sounds/alert_47.wav"
+ICON="$HOME/.mcabber/images/chat.png"
+TIMEOUT=10000
+
+function new_message_in() {
+    terminal-notifier -subtitle "$TITLE" -message "new messages from ${JID}" 
+    say -v Boing ah
+}
+
+if [ $EVENT_TYPE == "MSG" ] && [ $EVENT_SUBTYPE == "IN" ]
+then
+    new_message_in
+fi

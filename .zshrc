@@ -4,7 +4,7 @@ export ZSH=/Users/diego/.oh-my-zsh
 ZSH_THEME="agnoster"
 DISABLE_AUTO_TITLE="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git osx vi-mode)
+plugins=(git osx vi-mode brew)
 
 # User configuration
 

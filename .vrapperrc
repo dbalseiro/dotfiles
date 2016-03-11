@@ -1,0 +1,6 @@
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set scrolloff=3
+set clipboard=unnamedplus
