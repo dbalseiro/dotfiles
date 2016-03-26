@@ -13,6 +13,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 if [ -d ~/bin ]; then
     export PATH=$PATH:~/bin
 fi
+export PATH=$PATH:~/Applications/instantclient_11_2
 
 source $ZSH/oh-my-zsh.sh
 
@@ -20,9 +21,9 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 function tabcolors() {
-    echo "\033]6;1;bg;red;brightness;$1\a"
-    echo "\033]6;1;bg;green;brightness;$2\a"
-    echo "\033]6;1;bg;blue;brightness;$3\a"
+    echo -ne "\033]6;1;bg;red;brightness;$1\a"
+    echo -ne "\033]6;1;bg;green;brightness;$2\a"
+    echo -ne "\033]6;1;bg;blue;brightness;$3\a"
 }
 
 function tabtitle() {
@@ -32,6 +33,8 @@ function tabtitle() {
 export ASANA_PATH=/Users/diego/gocode/src/github.com/dbalseiro/asana
 export gcba_home=~/git/gcaba-io
 export pad_home=~/git/padhome
+export pad_circulo_home=~/git/padcirculohome
+
 
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
@@ -41,8 +44,12 @@ alias databases="tabtitle Databases; tabcolors 133 153 0; databases"
 alias services="tabtitle Servicios; tabcolors 220 50 47; services"
 alias asanaprofile="tabtitle Asana; tabcolors 181 137   0;cd $ASANA_PATH; ./asana-cli"
 alias gcabadev="tabtitle GCABA-IO; tabcolors 108 113 196;cd $gcba_home/source/back-end;vim"
-alias paddev="tabtitle MB-PAD; tabcolors 108 113 196;cd $pad_home;vim"
+alias paddev="tabtitle MB-PAD; tabcolors 108 113 196;cd $pad_home/pad;vim"
+alias pinkflowdev="tabtitle MB-PINKFLOW; tabcolors 108 113 196;cd $pad_home/pinkflow-base-project;vim"
+alias mbdev="tabtitle MB-ONLINE; tabcolors 108 113 196;vim /Volumes/git/mb-circulo-mbfonline"
 alias lynx="(cd ~/torrents ; lynx)"
+alias padcirculodev="tabtitle MB-CIRCULO-PAD; tabcolors 108 113 196;cd $pad_circulo_home/pad-circulo;vim"
+alias pinkflowcirculodev="tabtitle MB-CIRCULO-PINKFLOW; tabcolors 108 113 196;cd $pad_circulo_home/pinkflow-circulo;vim"
 
 export EDITOR='vim'
 export GOPATH=~/gocode
@@ -55,3 +62,4 @@ export jboss_home=~/jboss-as-7.1.1.Final
 
 export KEYTIMEOUT=1
 export JAVA_HOME=$(/usr/libexec/java_home)
+
