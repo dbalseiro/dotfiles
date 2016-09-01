@@ -48,7 +48,7 @@ alias paddev="tabtitle MB-PAD; tabcolors 108 113 196;cd $pad_home/pad;vim"
 alias pinkflowdev="tabtitle MB-PINKFLOW; tabcolors 108 113 196;cd $pad_home/pinkflow-base-project;vim"
 alias mbdev="tabtitle MB-ONLINE; tabcolors 108 113 196;vim /Volumes/git/mb-circulo-mbfonline"
 alias lynx="(cd ~/torrents ; lynx)"
-alias padcirculodev="tabtitle MB-CIRCULO-PAD; tabcolors 108 113 196;cd $pad_circulo_home/pad-circulo;vim"
+alias padcirculodev="tabtitle MB-CIRCULO-PINKFLOW; tabcolors 108 113 196;$pad_circulo_home/pad-circulo;vim"
 alias pinkflowcirculodev="tabtitle MB-CIRCULO-PINKFLOW; tabcolors 108 113 196;cd $pad_circulo_home/pinkflow-circulo;vim"
 
 export EDITOR='vim'
@@ -59,7 +59,10 @@ LC_ALL=en_US.UTF-8
 tabcolors 203 75 22
 
 export jboss_home=~/jboss-as-7.1.1.Final
+export JBOSS_HOME=~/jboss-as-7.1.1.Final
 
 export KEYTIMEOUT=1
 export JAVA_HOME=$(/usr/libexec/java_home)
 
+
+[ -s "/Users/diego/.dnx/dnvm/dnvm.sh" ] && . "/Users/diego/.dnx/dnvm/dnvm.sh" # Load dnvm
