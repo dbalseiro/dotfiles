@@ -1,0 +1,12 @@
+# Saved by Tig
+
+## Settings
+
+set mouse                     = yes
+set refresh-mode              = on-return
+set tab-size                  = 4
+
+## Keybindings
+
+# External commands:
+bind generic    T               !git tag -a %(prompt) %(commit)
