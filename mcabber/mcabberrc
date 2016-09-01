@@ -570,6 +570,10 @@ alias notavail = status notavail
 #alias topic = room topic
 alias s = roster search
 alias ss = roster search status
+alias lean = roster search lean
+alias seba = roster search seba
+alias adri = roster search adri
+alias juan = roster search juan
 
 # Set use_mouse to 1 to map mouse buttons like keycodes.
 #set use_mouse = 1
