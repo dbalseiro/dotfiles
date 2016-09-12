@@ -3,10 +3,11 @@
 ## Settings
 
 set mouse                     = yes
-set refresh-mode              = on-return
 set tab-size                  = 4
+set commit-order              = date
 
 ## Keybindings
 
 # External commands:
 bind generic    T               !git tag -a %(prompt) %(commit)
+bind generic    Y               !@sh -c "git show --format='%s' %(commit) | head -1 | pbcopy"
