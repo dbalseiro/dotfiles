@@ -34,6 +34,9 @@ map ,, <C-^>
 nmap } gt
 nmap { gT
 noremap ,. :tabonly<Return>
+
+set editor='/usr/local/bin/mvim -f'
+
 source! /Users/diego/.vimperatorrc.local
 
 " vim: set ft=vimperator:
