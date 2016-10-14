@@ -19,6 +19,13 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
+#
+
+function gt() {
+    clear
+    git $@
+    git status
+}
 
 function tabcolors() {
     echo -ne "\033]6;1;bg;red;brightness;$1\a"
