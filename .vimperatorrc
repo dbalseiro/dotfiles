@@ -37,6 +37,10 @@ noremap ,. :tabonly<Return>
 
 set editor='/usr/local/bin/mvim -f'
 
+
+" A => presentation mode
+nmap A :set gui!=tabs,notabs,navigation,nonavigation<cr>
+
 source! /Users/diego/.vimperatorrc.local
 
-" vim: set ft=vimperator:
+" vim: set syn=vim:
