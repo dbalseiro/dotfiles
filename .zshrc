@@ -88,31 +88,4 @@ man() {
 
 
 #dias sin fumar...
-function getDate() {
-    date -j -f "%Y%m%d" "$@" +%s
-}
-
-SINFUMAR_ORIGIN=`getDate 20161024`
-
-function calcularDias() {
-   echo $(( (((($1 - $2) / 60 ) / 60) / 24) ))
-}
-
-function diasSinFumar() {
-   calcularDias `cat ~/.sinfumar` $SINFUMAR_ORIGIN
-}
-
-function mensajeSinFumar() {
-    date +%s > ~/.sinfumar
-    echo "DIAS SIN FUMAR ---> $(diasSinFumar)"
-}
-
-###Muestro el mensaje si no esta el archivo flag o si el contenido del flag es mayor que 1
-if [ -f ~/.sinfumar ]; then
-    if [ $(calcularDias `date +%s` `cat ~/.sinfumar`) -gt 1 ]; then
-        mensajeSinFumar
-    fi
-else
-    mensajeSinFumar
-fi
-#fn dias sin fumar
+diasSinFumar
