@@ -20,6 +20,9 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 #
+export LC_ALL=es_AR.UTF-8  
+export LANG=es_AR.UTF-8
+
 
 function gt() {
     clear
@@ -57,6 +60,7 @@ alias mbdev="tabtitle MB-ONLINE; tabcolors 108 113 196;vim /Volumes/git/mb-circu
 alias lynx="(cd ~/torrents ; lynx)"
 alias padcirculodev="tabtitle MB-CIRCULO-PINKFLOW; tabcolors 108 113 196;$pad_circulo_home/pad-circulo;vim"
 alias pinkflowcirculodev="tabtitle MB-CIRCULO-PINKFLOW; tabcolors 108 113 196;cd $pad_circulo_home/pinkflow-circulo;vim"
+alias t="~/bin/todo/todo.sh"
 
 export EDITOR='vim'
 export GOPATH=~/gocode
