@@ -1,3 +1,4 @@
 *.log
 logs
 urlserver_list.txt
+sec.conf
