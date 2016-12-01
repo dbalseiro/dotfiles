@@ -9,6 +9,6 @@ set commit-order              = date
 ## Keybindings
 
 # External commands:
-bind generic    T               !git tag -a %(prompt) %(commit)
+bind generic    T               !gittag %(prompt) %(commit)
 bind generic    E               !vimgitshow %(commit):%(file) %(lineno)
 bind generic    Y               !@sh -c "git show --format='%s' %(commit) | head -1 | pbcopy"
