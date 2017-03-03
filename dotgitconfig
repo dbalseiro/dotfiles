@@ -1,16 +1,16 @@
 [alias]
     hist = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 [push]
-	default = simple
+    default = simple
 [user]
-	name = Diego Balseiro
-	email = diego.balseiro@syntagma.com.ar
+    name = Diego Balseiro
+    email = diego.balseiro@syntagma.com.ar
 [core]
-	excludesfile = /Users/diego/.gitignore_global
+    excludesfile = /Users/diego/.gitignore_global
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [pull]
-	rebase = false
+    rebase = false
