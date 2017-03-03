@@ -4,5 +4,9 @@ osgi.instance.area.default=@user.home/workspace-pad
 
 # increase perm gen size
 -XX:MaxPermSize=256m
+<<<<<<< HEAD
 
 #end
+=======
+#otro conflicto
+>>>>>>> 634d0b4c3b45c28f7bcf907de384bfd1c17bffed
