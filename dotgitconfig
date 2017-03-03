@@ -14,3 +14,4 @@
     trustExitCode = true
 [pull]
     rebase = false
+conflicto
