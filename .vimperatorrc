@@ -75,6 +75,10 @@ nmap < :js closeAllToLeft()<cr>
 command! closealltoright :js closeAllToRight()
 command! closealltoleft :js closeAllToLeft()
 
+"mover tabs
+nmap <c-h> :tabmove -1<cr>
+nmap <c-l> :tabmove +1<cr>
+
 "reload config
 nmap vs :source ~/.vimperatorrc<cr>
 
