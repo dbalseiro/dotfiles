@@ -1,7 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/diego/.oh-my-zsh
 
-ZSH_THEME="agnoster"
+POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs status)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
+ZSH_THEME="powerlevel9k/powerlevel9k"
 DISABLE_AUTO_TITLE="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git osx brew zsh-syntax-highlighting)
