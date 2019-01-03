@@ -50,3 +50,12 @@ export KEYTIMEOUT=1
 
 #Fuzzy Find all the things
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function quick-find() {
+    homedir=~/plow
+    dir=$(find $homedir -type d -not -path '*\/.*' -maxdepth 2 | fzf)
+    cd $dir
+    zle reset-prompt
+}
+zle -N quick-find-widget quick-find
+bindkey "^p" quick-find-widget
