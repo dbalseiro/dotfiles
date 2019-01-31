@@ -1,5 +1,5 @@
 # Link to specification or issue number
-#664 
+https://github.com/plow-technologies/all/issues/664
 
 # Focus areas for review
 
