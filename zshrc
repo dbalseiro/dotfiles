@@ -1,24 +1,21 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/dbalseiro/.oh-my-zsh
+export PATH=~/.local/bin:$HOME/bin:/usr/local/bin:$PATH
+export ZSH="/home/dbalseiro/.oh-my-zsh"
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs status time)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_COLOR_SCHEME='dark'
-DISABLE_AUTO_TITLE="true"
+ZSH_THEME="lambda-mod"
+#ZSH_THEME="powerlevel9k/powerlevel9k"
+#POWERLEVEL9K_MODE='awesome-fontconfig'
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs status time)
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
+#POWERLEVEL9K_COLOR_SCHEME='dark'
+#DISABLE_AUTO_TITLE="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git osx zsh-syntax-highlighting)
 
-# User configuration
+alias cat=bat
+export BAT_THEME=TwoDark
+# on light theme use:
+# export BAT_THEME=GitHub
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-for NEWPATH in ~/bin ~/.local/bin; do
-    if [ -d $NEWPATH ]; then
-        export PATH=$PATH:$NEWPATH
-    fi
-done
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -31,24 +28,14 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-#
-export LC_ALL=es_AR.UTF-8  
-export LANG=es_AR.UTF-8
-
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vim=nvim
-alias cat=bat
+alias wip="git add -A && git commit -mWIP && git push"
+alias nv="nvr -cc vsplit"
 
-export EDITOR='nvim'
-LC_CTYPE=en_US.UTF-8
-LC_ALL=en_US.UTF-8
+alias xgammon="xgammon -doublerfont '-*-clean-*-*-*-*-*-*-*-*-*-*-*-*'"
 
-export KEYTIMEOUT=1
+eval $(opam config env)
 
-#Fuzzy Find all the things
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 function quick-find() {
@@ -59,3 +46,14 @@ function quick-find() {
 }
 zle -N quick-find-widget quick-find
 bindkey "^p" quick-find-widget
+
+source /etc/profile.d/nix.sh
+export NIX_PATH=nixpkgs=/home/dbalseiro/plow/all/nix
+
+export PATH="/home/dbalseiro/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
+# 4GB memory for node :/
+export NODE_OPTIONS=--max_old_space_size=4096

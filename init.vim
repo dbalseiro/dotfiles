@@ -19,6 +19,8 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'nvie/vim-togglemouse'
 
+Plug 'aserebryakov/vim-todo-lists'
+
 Plug 'neovimhaskell/haskell-vim'
 "Plug 'nbouscal/vim-stylish-haskell'
 
@@ -39,14 +41,15 @@ Plug 'LnL7/vim-nix'
 Plug 'rakr/vim-one'
 Plug 'connorholyday/vim-snazzy'
 
+Plug 'johngrib/vim-game-snake'
+
 call plug#end()
 
 "LANGUAGE SERVER
-" 'reason': ['/home/dbalseiro/.local/bin/reason-language-server.exe'],
 let g:LanguageClient_serverCommands = {
-    \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ } 
+  \ 'reason': ['/home/dbalseiro/.local/bin/reason-language-server.exe'],
+  \ 'ocaml': ['ocaml-language-server', '--stdio'],
+  \ }
 
 
 "let g:LanguageClient_diagnosticsSignsMax = 0
@@ -75,23 +78,20 @@ let g:one_allow_italics = 1 " I love italic for comments
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 function! BackSpaceDiego()
-    if empty(getline('.'))
-        " Si es una linea vacia, la borro y me posiciono al final de la de
-        " arriba
-        execute 'normal ddk$'
+  if empty(getline('.'))
+    " If empty line, delete it and go to the end of the top one
+    execute 'normal ddk$'
+  else
+    " If not empty and the cursor is in the first column, umify lines with the
+    " top one
+    let col = col('.') - 1
+    if !col
+      execute 'normal kJx'
     else
-        "Si no es una linea vacia y estoy en la primera posicion, voy arriba y
-        "unifico las lineas (y borro el caracter que queda en el medio.
-        let col = col('.') - 1
-        if !col
-            execute 'normal kJx'
-
-        "Si no es una linea vacia y tampoco estoy en la primera posicion de la
-        "linea... backspace normal
-        else
-            execute 'normal X'
-        endif
+      " Any other case, just backspace
+      execute 'normal X'
     endif
+  endif
 endfunction
 
 nnoremap <s-bs> o<esc>
@@ -189,33 +189,32 @@ map <c-h> <c-w>h
 map <c-l> <c-w>l
 map <c-s> <c-w><s-t>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY:
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fijarse si existe el directorio antes de grabar... si no preguntar para "
-" crear                                                                   "
+" Check if the dir exists before creating a file (and ask for creation)   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup vimrc-auto-mkdir
-    autocmd!
-    autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 
-    function! s:auto_mkdir(dir, force)
-        if !isdirectory(a:dir) && (a:force || input("'" . a:dir . "' no existe. Crear [y/N]") =~? '^y\%[es]$')
-            call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-        endif
-    endfunction
+  function! s:auto_mkdir(dir, force)
+    if !isdirectory(a:dir) && (a:force || input("'" . a:dir . "' Create? [y/N]") =~? '^y\%[es]$')
+      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+  endfunction
 augroup END
 
 " Automatically open, but do not go to (if there are errors) the quickfix /
@@ -230,46 +229,46 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RENAME CURRENT FILE:
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-map <leader>r :call RenameFile()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DUPLICATE CURRENT FILE:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! DuplicateFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        redraw!
-    endif
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    redraw!
+  endif
 endfunction
 map <leader>d :call DuplicateFile()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+  let old_name = expand('%')
+  call DuplicateFile()
+  exec ':silent !rm ' . old_name
+  redraw!
+endfunction
+map <leader>r :call RenameFile()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LINE NUMBERS:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set relativenumber
 set number
+
 function! ToggleNumbersOn()
-    set relativenumber!
-    set number
+  set relativenumber!
+  set number
 endfunction
+
 function! ToggleRelativeOn()
-    set number!
-    set relativenumber
-    set number
+  set number!
+  set relativenumber
+  set number
 endfunction
+
 autocmd FocusLost   * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
 autocmd FocusGained * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
 autocmd InsertEnter * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
@@ -307,17 +306,19 @@ au TermOpen * setlocal nonumber norelativenumber
 " Remember cursor position between vim sessions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   execute "normal! g'\"" |
-    \ endif
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   execute "normal! g'\"" |
+  \ endif
 autocmd BufRead * normal zz
 "^ center buffer around cursor when opening file
 
 function! TrimEndLines()
-    let save_cursor = getpos(".")
-    :silent! %s#\($\n\s*\)\+\%$##
-    call setpos('.', save_cursor)
+  let save_cursor = getpos(".")
+  :silent! %s/\s*$//
+  call setpos('.', save_cursor)
 endfunction
+nnoremap <leader>b :call TrimEndLines()<cr>
+
 
 au BufWritePre * call TrimEndLines()
 au BufWritePre *.re call LanguageClient_textDocument_formatting()
@@ -327,7 +328,7 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 0
-let g:airline_theme = 'deus'
+let g:airline_theme = 'papercolor'
 "
 """""""
 " FZF "
@@ -371,22 +372,22 @@ nnoremap <leader>gl :Gpull<cr>
 """""""""
 " Toggle Vexplore with ctr-n
 function! ToggleVExplorer()
-    if exists("t:expl_buf_num")
-        let expl_win_num = bufwinnr(t:expl_buf_num)
-        if expl_win_num != -1
-            let cur_win_nr = winnr()
-            "exec expl_win_nr . 'wincmd w'
-            close
-            exec cur_win_nr . 'wincmd w'
-            unlet t:expl_buf_num
-        else
-            unlet t:expl_buf_num
-        endif
+  if exists("t:expl_buf_num")
+    let expl_win_num = bufwinnr(t:expl_buf_num)
+    if expl_win_num != -1
+      let cur_win_nr = winnr()
+      "exec expl_win_nr . 'wincmd w'
+      close
+      exec cur_win_nr . 'wincmd w'
+      unlet t:expl_buf_num
     else
-        exec '1wincmd w'
-        Vexplore
-        let t:expl_buf_num = bufnr("%")
+      unlet t:expl_buf_num
     endif
+  else
+    exec '1wincmd w'
+    Vexplore
+    let t:expl_buf_num = bufnr("%")
+  endif
 endfunction
 map <silent> <c-n> :call ToggleVExplorer()<cr>
 "Hit enter in the file browser to open the selected file with vsplit to the
