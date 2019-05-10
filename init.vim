@@ -28,6 +28,7 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'build': './install.sh'}
 Plug 'Shougo/denite.nvim'
+Plug 'parsonsmatt/intero-neovim'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
@@ -65,14 +66,15 @@ let g:deoplete#enable_at_startup = 1
 " BASIC EDITING CAONFIGURATION:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set termguicolors
-hi! Normal guibg=NONE ctermbg=NONE
+"hi! Normal guibg=NONE ctermbg=NONE
 
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
-colorscheme one
-set background=dark " for the dark version
+"colorscheme one
+:colorscheme Tomorrow-Night-Blue
+" set background=dark " for the dark version
 "set background=light " for the light version
-let g:one_allow_italics = 1 " I love italic for comments
+"let g:one_allow_italics = 1 " I love italic for comments
 
 "delete trailing
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -328,7 +330,7 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 0
-let g:airline_theme = 'papercolor'
+let g:airline_theme = 'tomorrow'
 "
 """""""
 " FZF "
