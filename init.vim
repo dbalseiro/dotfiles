@@ -28,7 +28,7 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'build': './install.sh'}
 Plug 'Shougo/denite.nvim'
-Plug 'parsonsmatt/intero-neovim'
+"Plug 'parsonsmatt/intero-neovim'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
@@ -41,6 +41,7 @@ Plug 'LnL7/vim-nix'
 
 Plug 'rakr/vim-one'
 Plug 'connorholyday/vim-snazzy'
+Plug 'mkarmona/colorsbox'
 
 Plug 'johngrib/vim-game-snake'
 
@@ -63,16 +64,18 @@ let g:deoplete#enable_at_startup = 1
 "endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BASIC EDITING CAONFIGURATION:
+" BASIC EDITING CONFIGURATION:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set termguicolors
-"hi! Normal guibg=NONE ctermbg=NONE
+hi! Normal guibg=None ctermbg=None
 
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
-"colorscheme one
+colorscheme one
 :colorscheme Tomorrow-Night-Blue
-" set background=dark " for the dark version
+"colorscheme colorsbox-stblue
+set background=dark " for the dark version
 "set background=light " for the light version
 "let g:one_allow_italics = 1 " I love italic for comments
 
@@ -352,7 +355,7 @@ nnoremap <C-p> :call FzfOmniFiles()<CR>
 
 command! -bang -nargs=* Find call fzf#vim#grep('rg --ignore-file tags --column --line-number --no-heading --fixed-strings --ignore-case  --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:find_git_root(), 1, <bang>0)
 nnoremap <leader>F :execute "Find " . shellescape(expand("<cWORD>"))<cr>
-nnoremap \ :cd ~/plow/all\|Find<space>
+nnoremap \ :cd ~/all\|Find<space>
 
 nnoremap ; :Buffers<cr>
 nnoremap ' :Tags<cr>
@@ -406,7 +409,7 @@ set autochdir
 """""""""
 
 function! GotoRoot()
-  execute "cd ~/plow/all/onping2.0/onping"
+  execute "cd ~/all/onping2.0/onping"
 endfunction
 
 nmap <leader>gf :call GotoRoot()<cr>,.<c-w>F<c-w>H

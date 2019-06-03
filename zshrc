@@ -56,4 +56,10 @@ eval "$(pyenv virtualenv-init -)"
 PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 # 4GB memory for node :/
-export NODE_OPTIONS=--max_old_space_size=4096
+export NODE_OPTIONS=--max_old_space_size=3072
+
+# plow test env
+export LocalDevResultFolder=~/all/result
+export LocalDevSiteBuildFolder=~/work/testOnping/sitebuild
+export LocalDevDockerComposeFolder=~/work/testOnping/sitebuild
+export LocalDevTestingPath=~/work/testOnping/
