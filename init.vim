@@ -22,6 +22,7 @@ Plug 'nvie/vim-togglemouse'
 Plug 'aserebryakov/vim-todo-lists'
 
 Plug 'neovimhaskell/haskell-vim'
+Plug 'pbrisbin/vim-syntax-shakespeare'
 "Plug 'nbouscal/vim-stylish-haskell'
 
 " Typescripti
@@ -53,6 +54,8 @@ let g:LanguageClient_serverCommands = {
   \ 'ocaml': ['ocaml-language-server', '--stdio'],
   \ }
 
+" restart Language Client
+nnoremap <leader>0 :LanguageClientStop<cr>:LanguageClientStart<cr>
 
 "let g:LanguageClient_diagnosticsSignsMax = 0
 
@@ -68,16 +71,16 @@ let g:deoplete#enable_at_startup = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set termguicolors
-hi! Normal guibg=None ctermbg=None
+hi! Normal guibg=NONE ctermbg=NONE
 
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
 colorscheme one
-:colorscheme Tomorrow-Night-Blue
+":colorscheme Tomorrow-Night-Blue
 "colorscheme colorsbox-stblue
 set background=dark " for the dark version
 "set background=light " for the light version
-"let g:one_allow_italics = 1 " I love italic for comments
+let g:one_allow_italics = 1 " I love italic for comments
 
 "delete trailing
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -333,7 +336,7 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 0
-let g:airline_theme = 'tomorrow'
+let g:airline_theme = 'onedark'
 "
 """""""
 " FZF "
