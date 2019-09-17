@@ -1,0 +1,20 @@
+#!/bin/bash
+label="Disk Usage"
+percent=$(dp | sed s/%//)
+
+echo " $label $percent% "
+echo
+echo "#000000"
+
+color=
+if [ $percent -lt 25 ]; then
+  color="#000000"
+elif [ $percent -lt 50 ]; then
+  color="#3D9970"
+elif [ $percent -lt 75 ]; then
+  color="#FF851B"
+else
+  color="#FF4136"
+fi
+
+echo $color
