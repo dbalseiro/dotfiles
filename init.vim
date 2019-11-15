@@ -24,6 +24,7 @@ Plug 'aserebryakov/vim-todo-lists'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'pbrisbin/vim-syntax-shakespeare'
 "Plug 'nbouscal/vim-stylish-haskell'
+Plug 'vmchale/dhall-vim'
 
 " Typescripti
 Plug 'HerringtonDarkholme/yats.vim'
@@ -75,11 +76,11 @@ hi! Normal guibg=NONE ctermbg=NONE
 
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
+" colorscheme one
+" colorscheme Tomorrow-Night-Blue
 colorscheme one
-":colorscheme Tomorrow-Night-Blue
-"colorscheme colorsbox-stblue
-set background=dark " for the dark version
-"set background=light " for the light version
+"set background=dark " for the dark version
+set background=dark " for the light version
 let g:one_allow_italics = 1 " I love italic for comments
 
 "delete trailing

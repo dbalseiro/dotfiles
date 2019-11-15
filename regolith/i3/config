@@ -305,3 +305,7 @@ exec --no-startup-id /usr/bin/regolith-ftue.sh
 
 # Hide the mouse pointer if unused for a duration
 exec --no-startup-id /usr/bin/unclutter -b
+
+exec --no-startup-id i3-msg 'workspace  " 2 - Terminal 💻  "; exec /home/dbalseiro/.local/kitty.app/bin/kitty'
+for_window [class="Google-chrome"] move container to workspace  " 1 - Web 🌐  "
+exec /usr/bin/sensible-browser
