@@ -118,6 +118,8 @@ bindsym $mod+Ctrl+9 workspace $ws19
 # cycle between workspace
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
