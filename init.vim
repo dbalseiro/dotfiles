@@ -80,7 +80,7 @@ set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
 " colorscheme Tomorrow-Night-Blue
 colorscheme one
 "set background=dark " for the dark version
-set background=dark " for the light version
+set background=light " for the light version
 let g:one_allow_italics = 1 " I love italic for comments
 
 "delete trailing
@@ -335,9 +335,9 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 " AIRLINE "
 """""""""""
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 0
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'papercolor'
 "
 """""""
 " FZF "
