@@ -3,14 +3,6 @@ autocmd!
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'reasonml-editor/vim-reason-plus'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'bling/vim-airline', { 'tag': 'v0.9' }
-Plug 'vim-airline/vim-airline-themes'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -22,15 +14,12 @@ Plug 'nvie/vim-togglemouse'
 Plug 'aserebryakov/vim-todo-lists'
 
 Plug 'neovimhaskell/haskell-vim'
-Plug 'pbrisbin/vim-syntax-shakespeare'
-"Plug 'nbouscal/vim-stylish-haskell'
-Plug 'vmchale/dhall-vim'
+Plug 'alx741/vim-hindent'
+Plug 'dense-analysis/ale'
 
-" Typescripti
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'build': './install.sh'}
-Plug 'Shougo/denite.nvim'
-"Plug 'parsonsmatt/intero-neovim'
+Plug 'pbrisbin/vim-syntax-shakespeare'
+Plug 'vmchale/dhall-vim'
+Plug 'LnL7/vim-nix'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
@@ -39,13 +28,12 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'
 
-Plug 'LnL7/vim-nix'
-
 Plug 'rakr/vim-one'
 Plug 'connorholyday/vim-snazzy'
 Plug 'mkarmona/colorsbox'
 
-Plug 'johngrib/vim-game-snake'
+Plug 'bling/vim-airline', { 'tag': 'v0.9' }
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -79,8 +67,7 @@ set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
 " colorscheme one
 " colorscheme Tomorrow-Night-Blue
 colorscheme one
-"set background=dark " for the dark version
-set background=light " for the light version
+set background=dark
 let g:one_allow_italics = 1 " I love italic for comments
 
 "delete trailing
@@ -132,8 +119,6 @@ set cmdheight=1
 set switchbuf=useopen
 set showtabline=2
 set winwidth=79
-" This makes RVM work inside Vim. I have no idea why.
-set shell=bash
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
@@ -337,7 +322,8 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 0
-let g:airline_theme = 'papercolor'
+let g:airline_theme = 'onedark'
+" let g:airline_theme = 'papercolor'
 "
 """""""
 " FZF "
@@ -359,7 +345,7 @@ nnoremap <C-p> :call FzfOmniFiles()<CR>
 
 command! -bang -nargs=* Find call fzf#vim#grep('rg --ignore-file tags --column --line-number --no-heading --fixed-strings --ignore-case  --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:find_git_root(), 1, <bang>0)
 nnoremap <leader>F :execute "Find " . shellescape(expand("<cWORD>"))<cr>
-nnoremap \ :cd ~/all\|Find<space>
+nnoremap \ :cd ~/work/hh\|Find<space>
 
 nnoremap ; :Buffers<cr>
 nnoremap ' :Tags<cr>
@@ -430,3 +416,32 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keys
 
 nnoremap <c-up> :cd ..<cr>
+
+"""""""""""
+" HINDENT "
+"""""""""""
+let g:hindent_on_save = 0 "manually indent hs files
+
+" Helper function, called below with mappings
+function! HaskellFormat(which) abort
+  if a:which ==# 'hindent' || a:which ==# 'both'
+    :Hindent
+  endif
+  if a:which ==# 'stylish' || a:which ==# 'both'
+    silent! exe 'undojoin'
+    silent! exe 'keepjumps %!stylish-haskell'
+  endif
+endfunction
+
+" Key bindings
+augroup haskellStylish
+  au!
+  " Just hindent
+  au FileType haskell nnoremap <leader>hi :Hindent<CR>
+  " Just stylish-haskell
+  au FileType haskell nnoremap <leader>hs :call HaskellFormat('stylish')<CR>
+  " First hindent, then stylish-haskell
+  au FileType haskell nnoremap <leader>hf :call HaskellFormat('both')<CR>
+augroup END
+
+let g:ale_linters = { 'haskell': ['hlint']}

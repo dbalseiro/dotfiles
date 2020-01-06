@@ -33,6 +33,10 @@ separator=|
 separator_block_width=10
 interval=600
 
+[vpn]
+separator_block_width=10
+interval=10
+
 [wifi]
 interval=10
 separator_block_width=20
