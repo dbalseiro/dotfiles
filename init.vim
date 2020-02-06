@@ -21,6 +21,8 @@ Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'vmchale/dhall-vim'
 Plug 'LnL7/vim-nix'
 
+Plug 'schickling/vim-bufonly'
+
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -64,8 +66,6 @@ hi! Normal guibg=NONE ctermbg=NONE
 
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
-" colorscheme one
-" colorscheme Tomorrow-Night-Blue
 colorscheme one
 set background=dark
 let g:one_allow_italics = 1 " I love italic for comments
