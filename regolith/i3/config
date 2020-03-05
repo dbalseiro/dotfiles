@@ -154,7 +154,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exit
 
 # lock the screen
-bindsym $mod+Escape exec :
+bindsym $mod+Escape exec gnome-screensaver-command -l
 
 # put the system to sleep
 bindsym $mod+Shift+s exec systemctl suspend
@@ -272,12 +272,12 @@ set_from_resource $i3-wm.bar.workspace.urgent.border.color i3-wm.bar.workspace.u
 set_from_resource $i3-wm.bar.workspace.urgent.background.color i3-wm.bar.workspace.urgent.background.color "#dc322f"
 set_from_resource $i3-wm.bar.workspace.urgent.text.color i3-wm.bar.workspace.urgent.text.color "#fdf6e3"
 
-set_from_resource $i3-wm.bar.font i3-wm.bar.font "pango:Monoid Nerd Font, FontAwesome 13"
+# set_from_resource $i3-wm.bar.font i3-wm.bar.font pango: FontAwesome 9
 
 # Configure the bar
 bar {
   position top
-  font "pango: Monoid Nerd Font 10"
+  font pango: Font Awesome 10
   separator_symbol " "
   status_command i3xrocks -c /home/dbalseiro/.config/regolith/i3xrocks/config
   tray_output none

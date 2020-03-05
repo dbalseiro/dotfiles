@@ -33,6 +33,7 @@ Plug 'godlygeek/tabular'
 Plug 'rakr/vim-one'
 Plug 'connorholyday/vim-snazzy'
 Plug 'mkarmona/colorsbox'
+Plug 'arzg/vim-colors-xcode'
 
 Plug 'bling/vim-airline', { 'tag': 'v0.9' }
 Plug 'vim-airline/vim-airline-themes'
