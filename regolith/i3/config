@@ -11,7 +11,7 @@ set $mod Mod4
 # These are the labels which define each i3 workspace.
 set $ws1 " 1 - Web 🌐  "
 set $ws2 " 2 - Terminal 💻  "
-set_from_resource $ws3  i3-wm.workspace.03.name "3"
+set $ws3 " 3 - Chat 💬 "
 set_from_resource $ws4  i3-wm.workspace.04.name "4"
 set_from_resource $ws5  i3-wm.workspace.05.name "5"
 set_from_resource $ws6  i3-wm.workspace.06.name "6"
@@ -309,5 +309,6 @@ exec --no-startup-id /usr/bin/regolith-ftue.sh
 exec --no-startup-id /usr/bin/unclutter -b
 
 exec --no-startup-id i3-msg 'workspace  " 2 - Terminal 💻  "; exec /home/dbalseiro/.local/kitty.app/bin/kitty'
+exec --no-startup-id i3-msg 'workspace  " 3 - Chat 💬 "; exec /usr/bin/slack'
 for_window [class="Google-chrome"] move container to workspace  " 1 - Web 🌐  "
 exec /usr/bin/sensible-browser
