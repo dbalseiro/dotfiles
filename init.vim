@@ -3,6 +3,7 @@ autocmd!
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'reasonml-editor/vim-reason-plus'
+Plug 'lepture/vim-jinja'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -351,6 +352,14 @@ nnoremap \ :cd ~/work/hh\|Find<space>
 nnoremap ; :Buffers<cr>
 nnoremap ' :Tags<cr>
 
+function! GenerateTags()
+  cd `=s:find_git_root()`
+  return system('hasktags --ctags .')
+endfunction
+
+command! GenerateTags :call GenerateTags()
+
+
 """""""
 " GIT "
 """""""
@@ -403,7 +412,8 @@ function! GotoRoot()
   execute "cd ~/all/onping2.0/onping"
 endfunction
 
-nmap <leader>gf :call GotoRoot()<cr>,.<c-w>F<c-w>H
+nmap <leader>gf ,.<c-w>F<c-w>H:vertical resize +20<cr>
+nmap <c-leftmouse> <leftmouse>,gf
 "
 """"""""""""""""""""""""""""""
 " Haskell syntax highligying "
