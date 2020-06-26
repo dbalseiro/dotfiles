@@ -63,14 +63,17 @@ let g:deoplete#enable_at_startup = 1
 " BASIC EDITING CONFIGURATION:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set termguicolors
-hi! Normal guibg=NONE ctermbg=NONE
+set colorcolumn=80,132
 
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
 colorscheme one
 set background=dark
 let g:one_allow_italics = 1 " I love italic for comments
+
+set termguicolors
+hi! Normal guibg=NONE ctermbg=NONE
+hi! Search ctermbg=blue guibg=blue
 
 "delete trailing
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -84,7 +87,11 @@ function! BackSpaceDiego()
     " top one
     let col = col('.') - 1
     if !col
-      execute 'normal kJx'
+      if empty(getline(line('.') - 1))
+        execute 'normal kJ'
+      else
+        execute 'normal kJx'
+      endif
     else
       " Any other case, just backspace
       execute 'normal X'
