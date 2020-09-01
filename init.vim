@@ -10,9 +10,16 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+Plug 'pangloss/vim-javascript'
+
 Plug 'nvie/vim-togglemouse'
 
 Plug 'aserebryakov/vim-todo-lists'
+
+Plug 'jparise/vim-graphql'
+Plug 'nvie/vim-flake8'
+Plug 'flebel/vim-mypy', { 'for': 'python', 'branch': 'bugfix/fast_parser_is_default_and_only_parser' }
+
 
 Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
@@ -323,7 +330,7 @@ endfunction
 nnoremap <leader>b :call TrimEndLines()<cr>
 
 
-au BufWritePre * call TrimEndLines()
+" au BufWritePre * call TrimEndLines()
 au BufWritePre *.re call LanguageClient_textDocument_formatting()
 
 """""""""""
@@ -411,6 +418,8 @@ let g:netrw_liststyle = 0
 "change directory to the current buffer when opening files
 set autochdir
 
+let g:nnn#replace_netrw = 0
+
 """""""""
 " SHIMS "
 """""""""
@@ -462,4 +471,15 @@ augroup haskellStylish
   au FileType haskell nnoremap <leader>hf :call HaskellFormat('both')<CR>
 augroup END
 
-let g:ale_linters = { 'haskell': ['hlint']}
+let g:ale_linters = { 'haskell': ['hlint'], 'python': ['flake8']}
+
+"test bash scripts
+nnoremap <leader>t :w\|!./%<CR>
+
+"run mypy
+function! MyPyDiego() 
+  set makeprg=mypy
+  make --ignore-missing-imports --follow-imports=skip %
+endfunction
+
+nnoremap <leader>mp :call MyPyDiego()<cr>

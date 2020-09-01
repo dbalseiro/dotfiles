@@ -1,0 +1,35 @@
+#!/bin/bash
+
+ROFI_TEXT=Session
+ROFI_OPTIONS=(-width 11 -location 2 -yoffset 400 -hide-scrollbar -bw 2)
+
+function exists() {
+  command -v "$1" &> /dev/null 2>&1
+}
+
+function errxit() {
+  echo $@
+  exit 1
+}
+
+deps="systemctl rofi gnome-session-quit"
+
+for dep in $deps; do
+  exists $dep || errxit "$dep REQUIRED"
+done
+
+typeset -A menu
+menu=(
+  [❌ Shutdown]="systemctl poweroff"
+  [♻️ Reboot]="systemctl reboot"
+  [👋 Logout]="gnome-session-quit --no-prompt --logout"
+)
+rows=${#menu[@]}
+opts=(-dmenu -i -lines $rows -p "$ROFI_TEXT" "${ROFI_OPTIONS[@]}")
+sel="$(printf '%s\n' "${!menu[@]}" | rofi ${opts[@]})"
+
+if [ ! -z "$sel" ]; then
+  if [ ! -z "${menu[${sel}]}" ]; then
+    i3-msg -q "exec ${menu[$sel]}"
+  fi
+fi

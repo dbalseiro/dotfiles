@@ -45,6 +45,8 @@ bindsym $mod+Shift+q kill
 
 set_from_resource $rofiTheme rofi.theme "regolith-theme"
 
+bindsym $mod+Delete exec /home/dbalseiro/bin/shutdown_menu
+
 # rofi app and window launchers
 bindsym $mod+space exec rofi -show drun -theme $rofiTheme
 bindsym $mod+Shift+space exec rofi -show run -theme $rofiTheme
