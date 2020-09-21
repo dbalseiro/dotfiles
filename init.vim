@@ -288,8 +288,8 @@ autocmd InsertLeave * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
 " EASY EDITING VIMRC:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
-nnoremap <silent> <leader>vs :w\|so $MYVIMRC<CR>
-nnoremap <silent> <leader>l :w\|source %<cr>
+nnoremap <silent> <leader>vs :w!\|so $MYVIMRC<CR>
+nnoremap <silent> <leader>l :w!\|source %<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TERMINAL MODE:
@@ -471,7 +471,7 @@ augroup haskellStylish
   au FileType haskell nnoremap <leader>hf :call HaskellFormat('both')<CR>
 augroup END
 
-let g:ale_linters = { 'haskell': ['hlint'], 'python': ['flake8']}
+let g:ale_linters = { 'haskell': ['hlint'], 'python': ['flake8'], 'javascript': ['jslint']}
 
 "test bash scripts
 nnoremap <leader>t :w\|!./%<CR>
