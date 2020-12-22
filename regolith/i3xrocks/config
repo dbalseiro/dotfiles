@@ -29,6 +29,10 @@ markup=pango
 color=xresource:i3xrocks.label.color
 separator=|
 
+[bluetooth]
+separator_block_width=10
+interval=10
+
 [disk]
 separator_block_width=10
 interval=600

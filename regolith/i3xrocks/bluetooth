@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set -euo pipefail
+
+PGM='
+  NR == 1 { dev = $1 }
+  NR == 3 { status = $1 }
+  END { if (status == "UP") print dev }
+'
+
+function device-on() {
+  test $(hciconfig | awk "$PGM")
+}
+
+function count-connected-devices() {
+  hcitool con | tail +2 | wc -l
+}
+
+COUNT=0
+COLOR="#aaaaaa"
+if device-on; then
+  COUNT=$(count-connected-devices)
+  COLOR="#D1E600"
+fi
+
+if [ $COUNT -eq 0 ]; then
+  echo "	ᛒ"
+else
+  echo "	ᛒ ($COUNT)"
+fi
+echo
+echo $COLOR

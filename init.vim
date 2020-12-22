@@ -16,6 +16,7 @@ Plug 'nvie/vim-togglemouse'
 
 Plug 'aserebryakov/vim-todo-lists'
 
+Plug 'vim-python/python-syntax'
 Plug 'jparise/vim-graphql'
 Plug 'nvie/vim-flake8'
 Plug 'flebel/vim-mypy', { 'for': 'python', 'branch': 'bugfix/fast_parser_is_default_and_only_parser' }
@@ -36,6 +37,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
 
 Plug 'rakr/vim-one'
@@ -77,10 +79,6 @@ set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
 colorscheme one
 set background=dark
 let g:one_allow_italics = 1 " I love italic for comments
-
-set termguicolors
-hi! Normal guibg=NONE ctermbg=NONE
-hi! Search ctermbg=blue guibg=blue
 
 "delete trailing
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -162,6 +160,11 @@ set wildmenu
 let mapleader=","
 " Fix slow O inserts
 :set timeout timeoutlen=1000 ttimeoutlen=100
+
+set termguicolors
+hi! Normal guibg=NONE ctermbg=NONE
+hi! Search guibg=#febdca
+hi! Cursor guifg=white guibg=black
 
 " Clear the search buffer when hitting return
 function! MapCR()
@@ -337,7 +340,7 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 " AIRLINE "
 """""""""""
 let g:airline#extensions#tabline#enabled = 0
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline_theme = 'onedark'
 " let g:airline_theme = 'papercolor'
 "
