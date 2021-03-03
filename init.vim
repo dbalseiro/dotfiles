@@ -2,9 +2,6 @@ autocmd!
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'lepture/vim-jinja'
-
 Plug 'airblade/vim-gitgutter'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -14,21 +11,19 @@ Plug 'pangloss/vim-javascript'
 
 Plug 'nvie/vim-togglemouse'
 
-Plug 'aserebryakov/vim-todo-lists'
-
 Plug 'vim-python/python-syntax'
 Plug 'jparise/vim-graphql'
 Plug 'nvie/vim-flake8'
 Plug 'flebel/vim-mypy', { 'for': 'python', 'branch': 'bugfix/fast_parser_is_default_and_only_parser' }
-
+Plug 'davidhalter/jedi-vim'
 
 Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
 Plug 'dense-analysis/ale'
 
-Plug 'pbrisbin/vim-syntax-shakespeare'
-Plug 'vmchale/dhall-vim'
-Plug 'LnL7/vim-nix'
+" Plug 'pbrisbin/vim-syntax-shakespeare'
+" Plug 'vmchale/dhall-vim'
+" Plug 'LnL7/vim-nix'
 
 Plug 'schickling/vim-bufonly'
 
@@ -39,15 +34,14 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
+Plug 'lepture/vim-jinja'
 
-Plug 'rakr/vim-one'
-Plug 'connorholyday/vim-snazzy'
-Plug 'mkarmona/colorsbox'
-Plug 'arzg/vim-colors-xcode'
 
 Plug 'bling/vim-airline', { 'tag': 'v0.9' }
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'rakr/vim-one'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 "LANGUAGE SERVER
@@ -73,13 +67,14 @@ let g:deoplete#enable_at_startup = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set colorcolumn=80,132
-
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
+" set background=dark
+set termguicolors
+colorscheme nord
 colorscheme one
-set background=dark
-let g:one_allow_italics = 1 " I love italic for comments
-
+" hi! Normal guibg=#abcdef ctermbg=1
+" 
 "delete trailing
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
@@ -147,7 +142,7 @@ set backspace=indent,eol,start
 " display incomplete commands
 set showcmd
 " Enable highlighting for syntax
-syntax on
+syntax enable
 " Enable file type detection.
 " Use the default filetype settings, so that mail gets 'tw' set to 72,
 " 'cindent' is on in C files, etc.
@@ -160,11 +155,6 @@ set wildmenu
 let mapleader=","
 " Fix slow O inserts
 :set timeout timeoutlen=1000 ttimeoutlen=100
-
-set termguicolors
-hi! Normal guibg=NONE ctermbg=NONE
-hi! Search guibg=#febdca
-hi! Cursor guifg=white guibg=black
 
 " Clear the search buffer when hitting return
 function! MapCR()
@@ -339,9 +329,9 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 " AIRLINE "
 """""""""""
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'onedark'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 0
+let g:airline_theme = 'one'
 " let g:airline_theme = 'papercolor'
 "
 """""""
@@ -360,11 +350,15 @@ function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
+function GoToRoot()
+  cd `=s:find_git_root()`
+endfunction
+
 nnoremap <C-p> :call FzfOmniFiles()<CR>
 
 command! -bang -nargs=* Find call fzf#vim#grep('rg --ignore-file tags --column --line-number --no-heading --fixed-strings --ignore-case  --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:find_git_root(), 1, <bang>0)
 nnoremap <leader>F :execute "Find " . shellescape(expand("<cWORD>"))<cr>
-nnoremap \ :cd ~/work/hh\|Find<space>
+nnoremap \ :call GoToRoot()\|Find<space>
 
 nnoremap ; :Buffers<cr>
 nnoremap ' :Tags<cr>
@@ -373,7 +367,6 @@ function! GenerateTags()
   cd `=s:find_git_root()`
   return system('hasktags --ctags .')
 endfunction
-
 command! GenerateTags :call GenerateTags()
 
 
@@ -474,7 +467,7 @@ augroup haskellStylish
   au FileType haskell nnoremap <leader>hf :call HaskellFormat('both')<CR>
 augroup END
 
-let g:ale_linters = { 'haskell': ['hlint'], 'python': ['flake8'], 'javascript': ['jslint']}
+let g:ale_linters = { 'python': ['flake8'], 'javascript': ['jslint']}
 
 "test bash scripts
 nnoremap <leader>t :w\|!./%<CR>
