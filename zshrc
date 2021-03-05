@@ -1,81 +1,17 @@
-export PATH=~/.local/bin:$HOME/bin:/usr/local/bin:$PATH
-export ZSH="/home/dbalseiro/.oh-my-zsh"
-
-ZSH_THEME="lambda-mod"
-#ZSH_THEME="powerlevel9k/powerlevel9k"
-#POWERLEVEL9K_MODE='awesome-fontconfig'
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs status time)
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-#POWERLEVEL9K_COLOR_SCHEME='dark'
-#DISABLE_AUTO_TITLE="true"
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-alias cat=bat
-export BAT_THEME=TwoDark
-# on light theme use:
-# export BAT_THEME=GitHub
-
-plugins=(zsh-syntax-highlighting)
-
-source $ZSH/oh-my-zsh.sh
-
-# zsh options
-setopt EXTENDED_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
-
-alias vim=nvim
-alias wip="git add -A && git commit -mWIP && git push"
-alias refactor="git add -A && git commit -mRefactor && git push"
-alias nv="nvr -cc vsplit"
-alias cors="chromium-browser --disable-web-security --user-data-dir=~/.chromium"
-
-alias xgammon="xgammon -doublerfont '-*-clean-*-*-*-*-*-*-*-*-*-*-*-*'"
-
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+alias vim='nvim'
+alias gs='~/bin/gs'
+alias cat=bat
 
+export BAT_THEME=TwoDark
+export EDITOR=nvim
 
-eval $(opam config env)
+source "/home/dbalseiro/antigen.zsh"
+antigen init ~/.antigenrc
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.fzf.zsh ];then
+  source ~/.fzf.zsh
+fi
 
-function quick-find() {
-    homedir=~/all
-    dir=$(find $homedir -type d -not -path '*\/.*' -maxdepth 2 | fzf)
-    cd $dir
-    zle reset-prompt
-}
-zle -N quick-find-widget quick-find
-bindkey "^p" quick-find-widget
-
-source /etc/profile.d/nix.sh
-export NIX_PATH=nixpkgs=/home/dbalseiro/all/nix
-
-export PATH="/home/dbalseiro/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-
-# 4GB memory for node :/
-export NODE_OPTIONS=--max_old_space_size=4096
-
-# plow test env
-export LocalDevResultFolder=~/all/result
-export LocalDevSiteBuildFolder=~/work/testOnping/sitebuild
-export LocalDevDockerComposeFolder=~/work/testOnping/sitebuild
-export LocalDevTestingPath=~/work/testOnping/
-
-# ANTIGEN
-source ~/antigen.zsh
-antigen bundle 'wfxr/forgit'
-antigen apply
-
-#NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH=~/.local/bin:~/bin:$PATH

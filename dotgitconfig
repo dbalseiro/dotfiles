@@ -1,32 +1,10 @@
-[alias]
-    hist = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-	d = difftool
-[push]
-    default = simple
 [user]
-    name = Diego Balseiro
-    email = dbalseiro@stackbuilders.com
+	email = dbalseiro@stackbuilders.com
+	name = Diego Balseiro
 [core]
-    excludesfile = /Users/diego/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[pull]
-    rebase = false
-[diff]
-	tool = vimdiff
-[difftool]
-	prompt = false
-[merge]
-  ddkdk
-	tool = vimdiff
-[mergetool]
-	conflictstyle = diff3
-	prompt = false
+[interactive]
+	diffFilter = diff-so-fancy --patch
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -35,11 +13,10 @@
 	newNormal = green bold
 	newHighlight = green bold 22
 [color "diff"]
-	meta = yellow
+	meta = 11
 	frag = magenta bold
+	func = 146 bold
 	commit = yellow bold
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[diff-so-fancy]
-	markEmptyLines = false
