@@ -1,0 +1,8 @@
+:set prompt "\ESC[34mλ> \ESC[m"
+:def ss (\_ -> return "hspec spec")
+
+dotGHCI_escapeShellArg arg = "'" ++ concatMap (\c -> if c == '\'' then "'\\''" else [c]) arg ++ "'"
+:def! hoogle return . (":!hoogle -q --count=15 --color " ++) . dotGHCI_escapeShellArg
+:def! search return . (":!hoogle -q --count=3 --color " ++) . dotGHCI_escapeShellArg
+:def! hdoc return . (":!hoogle -q --color --info " ++) . dotGHCI_escapeShellArg
+:def! hlint \s -> return $ ":!hlint " ++ if null s then "." else s
