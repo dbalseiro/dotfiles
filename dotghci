@@ -1,3 +1,4 @@
+:set -XOverloadedStrings
 :set prompt "\ESC[34mλ> \ESC[m"
 :def ss (\_ -> return "hspec spec")
 
