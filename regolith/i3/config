@@ -12,7 +12,7 @@ set $mod Mod4
 set $ws1 " 1 - Web 🌐  "
 set $ws2 " 2 - Terminal 💻  "
 set $ws3 " 3 - Chat 💬 "
-set_from_resource $ws4  i3-wm.workspace.04.name "4"
+set $ws4 " 4 - Code 👨‍💻 "
 set_from_resource $ws5  i3-wm.workspace.05.name "5"
 set_from_resource $ws6  i3-wm.workspace.06.name "6"
 set_from_resource $ws7  i3-wm.workspace.07.name "7"
@@ -312,5 +312,6 @@ exec --no-startup-id /usr/bin/unclutter -b
 
 exec --no-startup-id i3-msg 'workspace  " 2 - Terminal 💻  "; exec /usr/bin/kitty'
 exec --no-startup-id i3-msg 'workspace  " 3 - Chat 💬 "; exec /usr/bin/slack'
+for_window [class="Code"] move container to workspace  " 4 - Code 👨‍💻 "
 for_window [class="Google-chrome"] move container to workspace  " 1 - Web 🌐  "
 exec /usr/bin/sensible-browser
