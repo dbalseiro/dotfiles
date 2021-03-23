@@ -1,3 +1,10 @@
+DISABLE_AUTO_TITLE="true"
+
+# title bar prompt
+precmd () {
+  print -Pn "\e]0; %1~ \a"
+}
+
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias vim='nvim'
