@@ -11,4 +11,5 @@ set commit-order              = date
 # External commands:
 bind generic    T               !gittag %(prompt) %(commit)
 bind generic    E               !vimgitshow %(commit):%(file) %(lineno)
-bind generic    Y               !@sh -c "git show --format='%s' %(commit) | head -1 | pbcopy"
+# bind generic    Y               !sh -c "git show --format='%s' %(commit) | head -1 | xclip -selection clipboard"
+bind generic    Y               !sh -c "echo %(commit) | xclip -selection clipboard"
