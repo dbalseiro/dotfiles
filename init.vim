@@ -37,7 +37,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
 Plug 'lepture/vim-jinja'
-
+Plug 'kassio/neoterm'
 
 Plug 'bling/vim-airline', { 'tag': 'v0.9' }
 Plug 'vim-airline/vim-airline-themes'
@@ -640,3 +640,14 @@ function! MyPyDiego()
 endfunction
 
 nnoremap <leader>mp :call MyPyDiego()<cr>
+
+function! HReloadAndTest()
+  exec ":w"
+  exec ":T:r"
+  exec ":T:ss"
+endfunction
+nnoremap <leader>ht :call HReloadAndTest()<cr>
+nnoremap <leader>hl :w\|T:l %<cr>
+nnoremap <leader>hr :w\|T:r<cr>
+nnoremap <leader>hb :w\|T stack build --fast<cr>
+nnoremap <leader>hB :w\|T stack test<cr>
