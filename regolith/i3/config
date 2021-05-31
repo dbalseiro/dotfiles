@@ -314,4 +314,5 @@ exec --no-startup-id i3-msg 'workspace  " 2 - Terminal 💻  "; exec /usr/bin/ki
 exec --no-startup-id i3-msg 'workspace  " 3 - Chat 💬 "; exec /usr/bin/slack'
 for_window [class="Code"] move container to workspace  " 4 - Code 👨‍💻 "
 for_window [class="Google-chrome"] move container to workspace  " 1 - Web 🌐  "
+for_window [class="Gnome-control-center" instance="gnome-control-center"] floating enable
 exec /usr/bin/sensible-browser
