@@ -2,30 +2,30 @@
 	email = dbalseiro@stackbuilders.com
 	name = Diego Balseiro
 [core]
-  # pager = diff-so-fancy | less --tabs=4 -RFX
-  pager = delta
+  pager = diff-so-fancy | less --tabs=4 -RFX
+  # pager = delta
 [interactive]
-  # diffFilter = diff-so-fancy --patch
-	diffFilter = delta --color-only
-# [color]
-# 	ui = true
-# [color "diff-highlight"]
-# 	oldNormal = red bold
-# 	oldHighlight = red bold 52
-# 	newNormal = green bold
-# 	newHighlight = green bold 22
-# [color "diff"]
-# 	meta = 11
-# 	frag = magenta bold
-# 	func = 146 bold
-# 	commit = yellow bold
-# 	old = red bold
-# 	new = green bold
-# 	whitespace = red reverse
+  diffFilter = diff-so-fancy --patch
+  # diffFilter = delta --color-only
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
 [advice]
 	detachedHead = false
-# [delta]
-#   plus-style = "syntax #012800"
-#   minus-style = "syntax #340001"
-#   syntax-theme = Monokai Extended
-#   navigate = true
+[delta]
+  plus-style = "syntax #012800"
+  minus-style = "syntax #340001"
+  syntax-theme = Monokai Extended
+  navigate = true
