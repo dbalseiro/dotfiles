@@ -3,6 +3,7 @@
 	name = Diego Balseiro
 [core]
   pager = diff-so-fancy | less --tabs=4 -RFX
+	editor = nvim
   # pager = delta
 [interactive]
   diffFilter = diff-so-fancy --patch
@@ -29,3 +30,5 @@
   minus-style = "syntax #340001"
   syntax-theme = Monokai Extended
   navigate = true
+[commit]
+	verbose = true

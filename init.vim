@@ -38,6 +38,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
 Plug 'lepture/vim-jinja'
 Plug 'kassio/neoterm'
+Plug 'rhysd/committia.vim'
 
 Plug 'bling/vim-airline', { 'tag': 'v0.9' }
 Plug 'vim-airline/vim-airline-themes'
@@ -48,8 +49,7 @@ call plug#end()
 
 "LANGUAGE SERVER
 let g:LanguageClient_serverCommands = {
-  \ 'reason': ['/home/dbalseiro/.local/bin/reason-language-server.exe'],
-  \ 'ocaml': ['ocaml-language-server', '--stdio'],
+  \ 'haskell': ['haske-language-server-8.8.4', '--lsp'],
   \ }
 
 " restart Language Client
@@ -351,8 +351,6 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-command! Terminal vsplit term://zsh
-
 command! MapTerm tnoremap <Esc> <C-\><C-n>
 command! UnMapTerm tunmap <Esc>
 
@@ -474,10 +472,6 @@ let g:nnn#replace_netrw = 0
 """""""""
 " SHIMS "
 """""""""
-
-function! GotoRoot()
-  execute "cd ~/all/onping2.0/onping"
-endfunction
 
 nmap <leader>gf ,.<c-w>F<c-w>H:vertical resize +20<cr>
 nmap <c-leftmouse> <leftmouse>,gf
@@ -641,10 +635,20 @@ endfunction
 
 nnoremap <leader>mp :call MyPyDiego()<cr>
 
+function! Terminal()
+  exec ":T cd .."
+  exec ":vsplit"
+  exec ":vertical resize +20"
+  " go to the previous buffer
+  normal ,,
+endfunction
+
+command! Terminal call Terminal()
+
 function! HReloadAndTest()
   exec ":w"
   exec ":T:r"
-  exec ":T:ss"
+  exec ":T hspec spec"
 endfunction
 nnoremap <leader>ht :call HReloadAndTest()<cr>
 nnoremap <leader>hl :w\|T:l %<cr>
