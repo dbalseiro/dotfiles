@@ -5,9 +5,6 @@
   pager = diff-so-fancy | less --tabs=4 -RFX
 	editor = nvim
   # pager = delta
-[interactive]
-  diffFilter = diff-so-fancy --patch
-  # diffFilter = delta --color-only
 [color]
 	ui = true
 [color "diff-highlight"]

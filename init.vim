@@ -44,6 +44,7 @@ Plug 'bling/vim-airline', { 'tag': 'v0.9' }
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'rakr/vim-one'
+Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
@@ -71,9 +72,8 @@ let g:deoplete#enable_at_startup = 1
 set colorcolumn=80,132
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
-" set background=dark
 set termguicolors
-colorscheme nord
+set background=dark
 colorscheme one
 " hi! Normal guibg=#abcdef ctermbg=1
 " 
@@ -565,6 +565,8 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+nnoremap <silent><nowait> <c-a> :CocAction<cr>
+
 """"""""""""""""""""""
 " Show Documentation "
 """"""""""""""""""""""
@@ -655,3 +657,17 @@ nnoremap <leader>hl :w\|T:l %<cr>
 nnoremap <leader>hr :w\|T:r<cr>
 nnoremap <leader>hb :w\|T stack build --fast<cr>
 nnoremap <leader>hB :w\|T stack test<cr>
+
+" Sane Remappings
+nnoremap Y y$
+
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv
+inoremap <c-j> <esc>:m .+1<cr>==i
+inoremap <c-k> <esc>:m .-2<cr>==i
+nnoremap <leader>j :m .+1<cr>==
+nnoremap <leader>k :m .-2<cr>==
