@@ -1,5 +1,5 @@
 #!/bin/bash
-INTERFACE="${BLOCK_INSTANCE:-wlan0}"
+INTERFACE="${BLOCK_INSTANCE:-wlp9s0}"
 [[ ! -d /sys/class/net/${INTERFACE}/wireless ]] ||
     [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]] && exit
 

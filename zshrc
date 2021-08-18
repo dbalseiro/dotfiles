@@ -10,7 +10,7 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias vim='nvim'
 alias gs='~/bin/gs'
-alias cat=bat
+alias cat=batcat
 alias k=kubectl
 
 export BAT_THEME=TwoDark
@@ -31,3 +31,5 @@ setopt no_hist_verify
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+source <(kubectl completion zsh)

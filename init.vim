@@ -229,6 +229,9 @@ map <c-s> <c-w><s-t>
 " " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+
+let g:coc_start_at_startup = v:false
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -565,7 +568,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-nnoremap <silent><nowait> <c-a> :CocAction<cr>
+nnoremap <silent><nowait> <c-s-a> :CocAction<cr>
 
 """"""""""""""""""""""
 " Show Documentation "
