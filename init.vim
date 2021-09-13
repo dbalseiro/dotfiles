@@ -15,7 +15,6 @@ Plug 'vim-python/python-syntax'
 Plug 'jparise/vim-graphql'
 Plug 'nvie/vim-flake8'
 Plug 'flebel/vim-mypy', { 'for': 'python', 'branch': 'bugfix/fast_parser_is_default_and_only_parser' }
-Plug 'davidhalter/jedi-vim'
 
 Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
@@ -38,7 +37,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
 Plug 'lepture/vim-jinja'
 Plug 'kassio/neoterm'
-Plug 'rhysd/committia.vim'
 
 Plug 'bling/vim-airline', { 'tag': 'v0.9' }
 Plug 'vim-airline/vim-airline-themes'
@@ -552,7 +550,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
@@ -568,7 +566,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-nnoremap <silent><nowait> <c-s-a> :CocAction<cr>
+nnoremap <silent><nowait> <space>a :CocAction<cr>
 
 """"""""""""""""""""""
 " Show Documentation "
@@ -661,13 +659,9 @@ nnoremap <leader>hr :w\|T:r<cr>
 nnoremap <leader>hb :w\|T stack build --fast<cr>
 nnoremap <leader>hB :w\|T stack test<cr>
 
+nnoremap <leader>r :w\|T !!<cr>
+
 " Sane Remappings
-nnoremap Y y$
-
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap J mzJ`z
-
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
 inoremap <c-j> <esc>:m .+1<cr>==i

@@ -29,3 +29,5 @@
   navigate = true
 [commit]
 	verbose = true
+[diff "sopsdiffer"]
+	textconv = sops -d
