@@ -24,7 +24,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Plug 'pbrisbin/vim-syntax-shakespeare'
 " Plug 'vmchale/dhall-vim'
-" Plug 'LnL7/vim-nix'
+Plug 'LnL7/vim-nix'
 
 Plug 'schickling/vim-bufonly'
 
@@ -38,12 +38,14 @@ Plug 'godlygeek/tabular'
 Plug 'lepture/vim-jinja'
 Plug 'kassio/neoterm'
 
-Plug 'bling/vim-airline', { 'tag': 'v0.9' }
+Plug 'bling/vim-airline', { 'tag': 'v0.11' }
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'rakr/vim-one'
 Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'NLKNguyen/papercolor-theme'
+
 call plug#end()
 
 "LANGUAGE SERVER
@@ -71,9 +73,11 @@ set colorcolumn=80,132
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
 set termguicolors
-set background=dark
-colorscheme one
-" hi! Normal guibg=#abcdef ctermbg=1
+set background=light
+colorscheme PaperColor
+hi! ColorColumn guibg=#eaeaea
+hi! Search guibg=#abcdef
+hi! CocFloating guibg=#fafafa
 " 
 "delete trailing
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -383,11 +387,11 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 " AIRLINE "
 """""""""""
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 0
-let g:airline_theme = 'one'
-" let g:airline_theme = 'papercolor'
-"
+"let g:airline_theme = 'one'
+let g:airline_theme = 'papercolor'
+
 """""""
 " FZF "
 """""""

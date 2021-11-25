@@ -60,5 +60,5 @@ if ($percent < 10) {
 }
 
 # Print short_text, full_text
-printf "<span><span color='%s'>%s  </span><span color='#aaa'>%s</span></span>\n", $icon_color, $icon, $full_text;
+printf "<span><span color='%s'>%s  </span><span color='#555'>%s</span></span>\n", $icon_color, $icon, $full_text;
 exit(0);

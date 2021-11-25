@@ -7,14 +7,10 @@ echo
 echo "#000000"
 
 color=
-if [ $percent -lt 25 ]; then
-  color="#666666"
-elif [ $percent -lt 50 ]; then
-  color="#3D9970"
-elif [ $percent -lt 75 ]; then
-  color="#FF851B"
+if [ $percent -lt 50 ]; then
+  color="#fafafa"
 else
-  color="#FF4136"
+  color="#feafea"
 fi
 
 echo $color
