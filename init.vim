@@ -17,7 +17,6 @@ Plug 'nvie/vim-flake8'
 Plug 'flebel/vim-mypy', { 'for': 'python', 'branch': 'bugfix/fast_parser_is_default_and_only_parser' }
 
 Plug 'neovimhaskell/haskell-vim'
-Plug 'alx741/vim-hindent'
 Plug 'dense-analysis/ale'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -78,6 +77,7 @@ colorscheme PaperColor
 hi! ColorColumn guibg=#eaeaea
 hi! Search guibg=#abcdef
 hi! CocFloating guibg=#fafafa
+hi! CocErrorFloat guibg=#fafafa
 " 
 "delete trailing
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -387,10 +387,18 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 " AIRLINE "
 """""""""""
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_powerline_fonts = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'one'
 let g:airline_theme = 'papercolor'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.linenr = '⭡'
+let g:airline_symbols.maxlinenr = ' ☰'
+let g:airline_symbols.branch = '⭠'
 
 """""""
 " FZF "

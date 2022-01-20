@@ -295,7 +295,7 @@ bar {
       focused_workspace  $i3-wm.bar.workspace.focused.border.color      "#feafea"  "#282a36"
       active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
       inactive_workspace $i3-wm.bar.workspace.inactive.border.color     "#cacaca" "#505050" #  "#abb2bf"
-      urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       $i3-wm.bar.workspace.urgent.background.color    $i3-wm.bar.workspace.urgent.text.color
+      urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       "#fefe0f"    $i3-wm.bar.workspace.urgent.text.color
   }
 }
 
