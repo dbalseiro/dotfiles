@@ -421,6 +421,7 @@ function GoToRoot()
 endfunction
 
 nnoremap <C-p> :call FzfOmniFiles()<CR>
+nnoremap <leader>p :Commands<CR>
 
 command! -bang -nargs=* Find call fzf#vim#grep('rg --ignore-file tags --column --line-number --no-heading --fixed-strings --ignore-case  --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.s:find_git_root(), 1, <bang>0)
 nnoremap <leader>F :execute "Find " . shellescape(expand("<cWORD>"))<cr>

@@ -64,6 +64,6 @@ interval=60
 # Date Time
 #
 [time]
-label=
+label=📆
 interval=60
 

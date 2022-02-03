@@ -279,7 +279,7 @@ set_from_resource $i3-wm.bar.workspace.urgent.text.color i3-wm.bar.workspace.urg
 # Configure the bar
 bar {
   position top
-  font pango: Font Awesome 10
+  font pango: Garuda 11
   separator_symbol " "
   status_command i3xrocks -c /home/dbalseiro/.config/regolith/i3xrocks/config
   tray_output none

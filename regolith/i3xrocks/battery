@@ -43,19 +43,19 @@ if ($acpi =~ /(\d\d:\d\d):/) {
 }
 
 if ($percent < 10) {
-  $icon = "";
+  $icon = "🔌";
   $icon_color = "#FF4136";
 } elsif ($percent < 30) {
-  $icon = "";
+  $icon = "🔌";
   $icon_color = "#FF851B";
 } elsif ($percent < 60) {
-  $icon = "";
+  $icon = "🔌";
   $icon_color = "#FFDC00";
 } elsif ($percent < 100) {
-  $icon = "";
+  $icon = "🔋";
   $icon_color = "#2ECC40";
 } else {
-  $icon = "";
+  $icon = "🔋";
   $icon_color = "#01FF70";
 }
 
