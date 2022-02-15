@@ -13,8 +13,9 @@ my $percent;
 my $full_text;
 my $short_text;
 my $icon;
-my $icon_color;
+my $icon_color = "#666666";
 my $bat_number = $ENV{BLOCK_INSTANCE} || 0;
+my $charging;
 
 # read the first line of the "acpi" command output
 open (ACPI, "acpi -b | grep 'Battery $bat_number' |") or die;
@@ -23,7 +24,7 @@ close(ACPI);
 
 # fail on unexpected output
 if ($acpi !~ /: (\w+), (\d+)%/) {
-	die "$acpi\n";
+  die "$acpi\n";
 }
 
 $status = $1;
@@ -31,34 +32,30 @@ $percent = $2;
 $full_text = "$percent%";
 
 if ($status eq 'Discharging') {
-	$full_text .= ' DIS';
-} elsif ($status eq 'Charging') {
-	$full_text .= ' CHR';
+  $charging = 0;
+} elsif ($status eq 'Charging' or $status eq 'Full') {
+  $charging = 1;
 }
 
 $short_text = $full_text;
 
 if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= " ($1)";
+  $full_text .= " ($1)";
 }
 
-if ($percent < 10) {
-  $icon = "🔌";
-  $icon_color = "#FF4136";
-} elsif ($percent < 30) {
-  $icon = "🔌";
-  $icon_color = "#FF851B";
-} elsif ($percent < 60) {
-  $icon = "🔌";
-  $icon_color = "#FFDC00";
-} elsif ($percent < 100) {
-  $icon = "🔋";
-  $icon_color = "#2ECC40";
-} else {
-  $icon = "🔋";
-  $icon_color = "#01FF70";
+my @icons = ("", "", "", "", "", "", "", "", "", "", "", "", "", "");
+my @map = (0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 6);
+my @colors = ("#FF4136", "#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#01FF70", "#01FF70");
+my $idx = $map[int($percent / 10)];
+
+$icon_color = $colors[$idx];
+
+if ($charging) {
+  $idx += 7;
 }
+
+$icon = $icons[$idx];
 
 # Print short_text, full_text
-printf "<span><span color='%s'>%s  </span><span color='#555'>%s</span></span>\n", $icon_color, $icon, $full_text;
+printf "<span><span color='%s' font='TerminessTTF Nerd Font 14'>%s </span><span color='#555'>%s</span></span>\n", $icon_color, $icon, $full_text;
 exit(0);

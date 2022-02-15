@@ -1,8 +1,17 @@
 #!/bin/bash
 label="Disk Usage"
+icon="﫭"
+icon_color=""
 percent=$(df -h | awk '$6 == "/" { print $5 }' | sed s/%//)
 
-echo " $label $percent% "
+if [ $percent -gt 75 ]; then
+  icon=""
+  icon_color="color='red'"
+fi
+
+icon_text="<span font='TerminessTTF Nerd Font 14' $icon_color>$icon</span>"
+
+echo " $label $icon_text $percent% "
 echo
 echo "#000000"
 

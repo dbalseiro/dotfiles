@@ -16,17 +16,18 @@ function count-connected-devices() {
   hcitool con | tail +2 | wc -l
 }
 
-COUNT=0
-COLOR="#aaaaaa"
+COLOR="#666666"
+ICON=""
 if device-on; then
   COUNT=$(count-connected-devices)
-  COLOR="#D1E600"
+  if [ $COUNT -gt 0 ]; then
+    ICON=""
+  else
+    ICON=""
+  fi
+  COLOR="#287AA9"
 fi
 
-if [ $COUNT -eq 0 ]; then
-  echo "	ᛒ"
-else
-  echo "	ᛒ ($COUNT)"
-fi
+echo "<span font='TerminessTTF Nerd Font 15'>$ICON</span>"
 echo
 echo $COLOR
