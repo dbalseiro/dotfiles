@@ -26,7 +26,8 @@
 command=/home/dbalseiro/.config/regolith/i3xrocks/$BLOCK_NAME
 separator_block_width=30
 markup=pango
-color=#0a0a0a # xresource:i3xrocks.label.color
+# color=#0a0a0a
+color=xresource:i3xrocks.label.color
 separator=|
 
 [bluetooth]

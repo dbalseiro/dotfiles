@@ -72,13 +72,23 @@ set colorcolumn=80,132
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
 set termguicolors
-set background=light
-colorscheme PaperColor
-hi! ColorColumn guibg=#eaeaea
-hi! Search guibg=#abcdef
-hi! CocFloating guibg=#fafafa
-hi! CocErrorFloat guibg=#fafafa
-" 
+set background=dark
+
+if &background == 'dark'
+  colorscheme one
+  let g:airline_theme = 'one'
+  hi! ColorColumn guibg=#333333
+  hi! Search guibg=#dada0f
+  " hi! CocFloating guibg=#fafafa
+  hi! Error guibg=#feafea
+else
+  colorscheme PaperColor
+  let g:airline_theme = 'papercolor'
+  hi! ColorColumn guibg=#eaeaea
+  hi! Search guibg=#abcdef
+  hi! CocFloating guibg=#fafafa
+endif
+"
 "delete trailing
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
@@ -389,8 +399,6 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-"let g:airline_theme = 'one'
-let g:airline_theme = 'papercolor'
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -505,8 +513,6 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
-  " Setup formatexpr specified filetype(s)
-  autocmd FileType typescript,json sel formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -644,7 +650,7 @@ let g:ale_linters = { 'haskell': ['hlint'], 'python': ['flake8'], 'javascript': 
 nnoremap <leader>t :w\|!./%<CR>
 
 "run mypy
-function! MyPyDiego() 
+function! MyPyDiego()
   set makeprg=mypy
   make --ignore-missing-imports --follow-imports=skip %
 endfunction
@@ -681,3 +687,4 @@ inoremap <c-j> <esc>:m .+1<cr>==i
 inoremap <c-k> <esc>:m .-2<cr>==i
 nnoremap <leader>j :m .+1<cr>==
 nnoremap <leader>k :m .-2<cr>==
+

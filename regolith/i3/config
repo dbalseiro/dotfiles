@@ -287,15 +287,27 @@ bar {
   workspace_buttons yes
 
   colors {
-      background "#ffffff"
-      statusline # $i3-wm.bar.statusline.color
-      separator  # $i3-wm.bar.separator.color
+      # LIGHT
+      # background "#ffffff"
+      # statusline # $i3-wm.bar.statusline.color
+      # separator  # $i3-wm.bar.separator.color
 
 #                        BORDER  BACKGROUND TEXT
-      focused_workspace  $i3-wm.bar.workspace.focused.border.color      "#feafea"  "#282a36"
+      # focused_workspace  $i3-wm.bar.workspace.focused.border.color      "#feafea"  "#282a36"
+      # active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
+      # inactive_workspace $i3-wm.bar.workspace.inactive.border.color     "#cacaca" "#505050" #  "#abb2bf"
+      # urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       "#fefe0f"    $i3-wm.bar.workspace.urgent.text.color
+
+      # DARK
+      background "#000000"
+      statusline $i3-wm.bar.statusline.color
+      separator  $i3-wm.bar.separator.color
+
+#                        BORDER  BACKGROUND TEXT
+      focused_workspace  $i3-wm.bar.workspace.focused.border.color      "#98c379"  "#282a36"
       active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
-      inactive_workspace $i3-wm.bar.workspace.inactive.border.color     "#cacaca" "#505050" #  "#abb2bf"
-      urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       "#fefe0f"    $i3-wm.bar.workspace.urgent.text.color
+      inactive_workspace $i3-wm.bar.workspace.inactive.border.color     "#1e2127" "#98c379" #  "#abb2bf"
+      urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       $i3-wm.bar.workspace.urgent.background.color    $i3-wm.bar.workspace.urgent.text.color
   }
 }
 
