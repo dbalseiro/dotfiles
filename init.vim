@@ -678,7 +678,7 @@ nnoremap <leader>hr :w\|T:r<cr>
 nnoremap <leader>hb :w\|T stack build --fast<cr>
 nnoremap <leader>hB :w\|T stack test<cr>
 
-nnoremap <leader>r :w\|T !!<cr>
+nnoremap <leader>R :call neoterm#exec("\<C-c>")<cr>
 
 " Sane Remappings
 vnoremap J :m '>+1<cr>gv=gv
@@ -687,4 +687,10 @@ inoremap <c-j> <esc>:m .+1<cr>==i
 inoremap <c-k> <esc>:m .-2<cr>==i
 nnoremap <leader>j :m .+1<cr>==
 nnoremap <leader>k :m .-2<cr>==
+
+command! -bar -bang -range=0 Tcancel
+      \ call neoterm#kill({ 'target': <count> })
+
+nnoremap <leader>r :w\|T !!<cr>
+nnoremap <leader>R :w\|Tcancel\|T !!<cr>
 
