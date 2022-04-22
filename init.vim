@@ -694,3 +694,7 @@ command! -bar -bang -range=0 Tcancel
 nnoremap <leader>r :w\|T !!<cr>
 nnoremap <leader>R :w\|Tcancel\|T !!<cr>
 
+augroup schema_ft
+  au!
+  autocmd BufNewFile,BufRead *.schema   set syntax=graphql
+augroup END

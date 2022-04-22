@@ -31,30 +31,35 @@ $status = $1;
 $percent = $2;
 $full_text = "$percent%";
 
-if ($status eq 'Discharging') {
-  $charging = 0;
-} elsif ($status eq 'Charging' or $status eq 'Full') {
-  $charging = 1;
+if ($status eq 'Not charging') {
+  $icon = ""
 }
+else {
+  if ($status eq 'Discharging') {
+    $charging = 0;
+  } elsif ($status eq 'Charging' or $status eq 'Full') {
+    $charging = 1;
+  }
 
-$short_text = $full_text;
+  $short_text = $full_text;
 
-if ($acpi =~ /(\d\d:\d\d):/) {
-  $full_text .= " ($1)";
+  if ($acpi =~ /(\d\d:\d\d):/) {
+    $full_text .= " ($1)";
+  }
+
+  my @icons = ("", "", "", "", "", "", "", "", "", "", "", "", "", "");
+  my @map = (0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 6);
+  my @colors = ("#FF4136", "#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#01FF70", "#01FF70");
+  my $idx = $map[int($percent / 10)];
+
+  $icon_color = $colors[$idx];
+
+  if ($charging) {
+    $idx += 7;
+  }
+
+  $icon = $icons[$idx];
 }
-
-my @icons = ("", "", "", "", "", "", "", "", "", "", "", "", "", "");
-my @map = (0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 6);
-my @colors = ("#FF4136", "#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#01FF70", "#01FF70");
-my $idx = $map[int($percent / 10)];
-
-$icon_color = $colors[$idx];
-
-if ($charging) {
-  $idx += 7;
-}
-
-$icon = $icons[$idx];
 
 # Print short_text, full_text
 my $text_color_dark="aaa";
