@@ -323,7 +323,7 @@ function! RenameFile()
   exec ':silent !rm ' . old_name
   redraw!
 endfunction
-map <leader>r :call RenameFile()<cr>
+map <space>r :call RenameFile()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LINE NUMBERS:

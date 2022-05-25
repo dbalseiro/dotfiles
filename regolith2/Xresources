@@ -1,0 +1,5 @@
+#define gtk_font_name Garuda
+
+regolith.wallpaper.file: /home/dbalseiro/Downloads/peakpx.jpg
+i3-wm.bar.position: top
+gtk.font_name: gtk_font_name 11

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "<span><span font='Garuda 14'>⏻ </span></span>"
+echo
+echo "#AA1234"
+
+case $1 in
+  1) gnome-session-quit --logout ;;
+  2) gnome-session-quit --reboot ;;
+  3) gnome-session-quit --power-off ;;
+esac

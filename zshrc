@@ -12,6 +12,8 @@ alias vim='nvim'
 alias gs='~/bin/gs'
 alias cat=batcat
 alias k=kubectl
+alias mk='minikube kubectl --'
+alias lastcommit='git log -n 1 --pretty=format:"%H" | pbcopy'
 
 export BAT_THEME=TwoDark
 export EDITOR=nvim
@@ -33,3 +35,6 @@ setopt no_hist_verify
 export PATH="$PATH:$HOME/.rvm/bin"
 
 source <(kubectl completion zsh)
+
+[ -f "/home/dbalseiro/.ghcup/env" ] && source "/home/dbalseiro/.ghcup/env" # ghcup-env
+

@@ -1,0 +1,75 @@
+#!/usr/bin/perl
+# This script is meant to use with i3blocks. It parses the output of the "acpi"
+# command (often provided by a package of the same name) to read the status of
+# the battery, and eventually its remaining time (to full charge or discharge).
+
+use strict;
+use warnings;
+use utf8;
+
+my $acpi;
+my $status;
+my $percent;
+my $full_text;
+my $short_text;
+my $icon;
+my $icon_color = "#666666";
+my $bat_number = $ENV{BLOCK_INSTANCE} || 0;
+my $charging;
+
+# handle click
+if (@ARGV[0] == 1) {
+  system("gnome-control-center", "power");
+}
+
+# read the first line of the "acpi" command output
+open (ACPI, "acpi -b | grep 'Battery $bat_number' |") or die;
+$acpi = <ACPI>;
+close(ACPI);
+
+# fail on unexpected output
+if ($acpi !~ /: (\w+), (\d+)%/) {
+  die "$acpi\n";
+}
+
+$status = $1;
+$percent = $2;
+$full_text = "$percent%";
+
+if ($status eq 'Not charging') {
+  $icon = ""
+}
+else {
+  if ($status eq 'Discharging') {
+    $charging = 0;
+  } elsif ($status eq 'Charging' or $status eq 'Full') {
+    $charging = 1;
+  }
+
+  $short_text = $full_text;
+
+  if ($acpi =~ /(\d\d:\d\d):/) {
+    $full_text .= " ($1)";
+  }
+
+  my @icons = ("", "", "", "", "", "", "", "", "", "", "", "", "", "");
+  my @map = (0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 6);
+  my @colors = ("#FF4136", "#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#01FF70", "#01FF70");
+  my $idx = $map[int($percent / 10)];
+
+  $icon_color = $colors[$idx];
+
+  if ($charging) {
+    $idx += 7;
+  }
+
+  $icon = $icons[$idx];
+}
+
+# Print short_text, full_text
+my $text_color_dark="aaa";
+my $text_color_light="555";
+my $text_color=$text_color_dark;
+
+printf "<span><span color='%s' font='TerminessTTF Nerd Font 14'>%s </span><span color='#%s'>%s</span>%s</span>\n", $icon_color, $icon, $text_color, $full_text;
+exit(0);
