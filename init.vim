@@ -2,7 +2,10 @@ autocmd!
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'notjedi/nvim-rooter.lua'
+
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -37,13 +40,17 @@ Plug 'godlygeek/tabular'
 Plug 'lepture/vim-jinja'
 Plug 'kassio/neoterm'
 
-Plug 'bling/vim-airline', { 'tag': 'v0.11' }
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'bling/vim-airline', { 'tag': 'v0.11' }
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'taohexxx/lightline-buffer'
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'rakr/vim-one'
-Plug 'ayu-theme/ayu-vim'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'ayu-theme/ayu-vim'
+" Plug 'arcticicestudio/nord-vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 call plug#end()
 
@@ -68,7 +75,7 @@ let g:deoplete#enable_at_startup = 1
 " BASIC EDITING CONFIGURATION:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set colorcolumn=80,132
+set colorcolumn=132
 set list
 set listchars=eol:¬,tab:▸\ ,trail:·,nbsp:·
 set termguicolors
@@ -76,19 +83,50 @@ set background=dark
 
 if &background == 'dark'
   colorscheme one
-  let g:airline_theme = 'one'
-  hi! ColorColumn guibg=#333333
-  hi! Search guibg=#dada0f
-  " hi! CocFloating guibg=#fafafa
-  hi! Error guibg=#feafea
+  let g:tokyonight_style = "storm"
+  let g:tokyonight_italic_functions = 1
+  let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
+  let g:lightline = {
+    \ 'colorscheme': 'one',
+    \ 'tabline': {
+    \   'left': [ [ 'bufferinfo' ],
+    \             [ 'separator' ],
+    \             [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+    \   'right': [ [ 'close' ], ],
+    \ },
+    \ 'component_expand': {
+    \   'buffercurrent': 'lightline#buffer#buffercurrent',
+    \   'bufferbefore': 'lightline#buffer#bufferbefore',
+    \   'bufferafter': 'lightline#buffer#bufferafter',
+    \ },
+    \ 'component_type': {
+    \   'buffercurrent': 'tabsel',
+    \   'bufferbefore': 'raw',
+    \   'bufferafter': 'raw',
+    \ },
+    \ 'component_function': {
+    \   'bufferinfo': 'lightline#buffer#bufferinfo',
+    \ },
+    \ 'component': {
+    \   'separator': '',
+    \ },
+    \ }
+    let g:lightline_buffer_enable_devicons = 1
+    let g:lightline_buffer_show_bufnr = 0
+    let g:lightline_buffer_readonly_icon = ''
+    let g:lightline_buffer_logo = ' '
+  " hi! ColorColumn guibg=#333333
+  " hi! Search guibg=#101010
+  " hi! CocFloating guibg=#120232
 else
-  colorscheme PaperColor
-  let g:airline_theme = 'papercolor'
-  hi! ColorColumn guibg=#eaeaea
-  hi! Search guibg=#abcdef
-  hi! CocFloating guibg=#fafafa
+  colorscheme tokyonight
+  let g:lightline = {'colorscheme': 'tokyonight'}
+  " let g:airline_theme = 'papercolor'
+  " hi! ColorColumn guibg=#eaeaea
+  " hi! Search guibg=#abcdef
+  " hi! CocFloating guibg=#fafafa
 endif
-"
+
 "delete trailing
 nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
@@ -229,7 +267,7 @@ map <c-s> <c-w><s-t>
 " MULTIPURPOSE TAB KEY:
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function! InsertTabWrapper()
+" function! InsertTabWrapper(
 "   let col = col('.') - 1
 "   if !col || getline('.')[col - 1] !~ '\k'
 "     return "\<tab>"
@@ -244,11 +282,11 @@ map <c-s> <c-w><s-t>
 
 let g:coc_start_at_startup = v:false
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -264,9 +302,9 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DIAGNOSTICS                                                             "
@@ -328,24 +366,24 @@ map <space>r :call RenameFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LINE NUMBERS:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set relativenumber
+" set relativenumber
 set number
 
-function! ToggleNumbersOn()
-  set relativenumber!
-  set number
-endfunction
-
-function! ToggleRelativeOn()
-  set number!
-  set relativenumber
-  set number
-endfunction
-
-autocmd FocusLost   * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
-autocmd FocusGained * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
-autocmd InsertEnter * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
-autocmd InsertLeave * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
+" function! ToggleNumbersOn()
+"   set relativenumber!
+"   set number
+" endfunction
+"
+" function! ToggleRelativeOn()
+"   set number!
+"   set relativenumber
+"   set number
+" endfunction
+"
+" autocmd FocusLost   * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
+" autocmd FocusGained * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
+" autocmd InsertEnter * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
+" autocmd InsertLeave * if &buftype != 'terminal' | call ToggleNumbersOn() | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EASY EDITING VIMRC:
@@ -397,16 +435,16 @@ au BufWritePre *.re call LanguageClient_textDocument_formatting()
 """""""""""
 " AIRLINE "
 """""""""""
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-let g:airline_symbols.linenr = '⭡'
-let g:airline_symbols.maxlinenr = ' ☰'
-let g:airline_symbols.branch = '⭠'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts = 1
+"
+" if !exists('g:airline_symbols')
+"   let g:airline_symbols = {}
+" endif
+"
+" let g:airline_symbols.linenr = '⭡'
+" let g:airline_symbols.maxlinenr = ' ☰'
+" let g:airline_symbols.branch = '⭠'
 
 """""""
 " FZF "
@@ -495,7 +533,7 @@ let g:nnn#replace_netrw = 0
 " SHIMS "
 """""""""
 
-nmap <leader>gf ,.<c-w>F<c-w>H:vertical resize +20<cr>
+nmap <leader>gf ,.<c-w>F<c-w>H:vertical resize +18<cr>
 nmap <c-leftmouse> <leftmouse>,gf
 
 " GoTo code navigation.
@@ -585,7 +623,8 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-nnoremap <silent><nowait> <space>a :CocAction<cr>
+nnoremap <silent><nowait> <space>a <Plug>(coc-codeaction)
+nnoremap <silent><nowait> <space>R :Rooter<cr>:CocRestart<cr>
 
 """"""""""""""""""""""
 " Show Documentation "
@@ -616,6 +655,16 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keys
 
 nnoremap <c-up> :cd ..<cr>
+
+""""""""""""
+" gitsigns "
+""""""""""""
+:lua require('gitsigns').setup()
+
+""""""""""
+" rooter "
+""""""""""
+:lua require('nvim-rooter').setup()
 
 """""""""""
 " HINDENT "
@@ -660,7 +709,7 @@ nnoremap <leader>mp :call MyPyDiego()<cr>
 function! Terminal()
   exec ":T cd .."
   exec ":vsplit"
-  exec ":vertical resize +20"
+  exec ":vertical resize +18"
   " go to the previous buffer
   normal ,,
 endfunction

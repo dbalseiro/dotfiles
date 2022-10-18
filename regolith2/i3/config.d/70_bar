@@ -22,7 +22,7 @@ set_from_resource $i3-wm.bar.status_command i3-wm.bar.status_command i3xrocks -u
 bar {
   position $i3-wm.bar.position
   mode $i3-wm.bar.mode
-  font pango: Garuda 11
+  font pango: URW Gothic 11
   separator_symbol $i3-wm.bar.separatorchar
   status_command i3xrocks -c /home/dbalseiro/.config/regolith2/i3xrocks/config
   tray_output $i3-wm.bar.trayoutput

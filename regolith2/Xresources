@@ -1,5 +1,36 @@
-#define gtk_font_name Garuda
+# COLOR DEFINITION
+#define color_gray     #928374
+#define color_red      #cc241d
+#define color_green    #98971a
+#define color_yellow   #d79921
+#define color_blue     #458588
+#define color_violet   #b16286
+#define color_cyan     #689d6a
+#define color_orange   #d65d0e
+#define color_ltred    #fb4934
+#define color_ltgreen  #b8bb26
+#define color_ltyellow #fabd2f
+#define color_ltblue   #83a598
+#define color_magenta  #d3869b
+#define color_ltcyan   #8ec07c
+#define color_brown    #fe8019
+
+
+#define gtk_font_name Garuda 11
 
 regolith.wallpaper.file: /home/dbalseiro/Downloads/peakpx.jpg
 i3-wm.bar.position: top
-gtk.font_name: gtk_font_name 11
+gtk.font_name: gtk_font_name
+
+#define Q(x) #x
+#define QUOTE(x) Q(x)
+#define glyph_font QUOTE(gtk_font_name)
+#define typeface_bar_glyph_workspace 
+#define glyph typeface_bar_glyph_workspace
+#define WORKSPACE_NAME(INDEX, COLOR) INDEX:<span>INDEX  </span><span foreground=COLOR>glyph</span>
+
+i3-wm.workspace.05.name: WORKSPACE_NAME(5, QUOTE(color_red))
+i3-wm.workspace.06.name: WORKSPACE_NAME(6, QUOTE(color_red))
+i3-wm.workspace.07.name: WORKSPACE_NAME(7, QUOTE(color_magenta))
+i3-wm.workspace.08.name: WORKSPACE_NAME(8, QUOTE(color_violet))
+i3-wm.workspace.09.name: WORKSPACE_NAME(9, QUOTE(color_yellow))

@@ -1,5 +1,5 @@
 #!/bin/sh
-DATE_FORMAT=`xrescat i3xrocks.date.format "+ %m-%d %H:%M "`
+DATE_FORMAT=`xrescat i3xrocks.date.format "+ %b %d %Y %H:%M "`
 color_light="#555"
 color_dark="#aaa"
 color=$color_dark

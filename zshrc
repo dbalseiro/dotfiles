@@ -14,6 +14,7 @@ alias cat=batcat
 alias k=kubectl
 alias mk='minikube kubectl --'
 alias lastcommit='git log -n 1 --pretty=format:"%H" | pbcopy'
+alias build='stack test && prune-juice'
 
 export BAT_THEME=TwoDark
 export EDITOR=nvim
