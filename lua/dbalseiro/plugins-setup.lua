@@ -1,3 +1,5 @@
+local utils = require 'dbalseiro.utils'
+
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -67,6 +69,12 @@ return packer.startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-unimpaired'
   use 'godlygeek/tabular'
+
+  -- TERMINAL
+  use {
+    'kassio/neoterm',
+    config = require("dbalseiro.utils").source_vim("terminal")
+  }
 
   -- TREESITER
   use {
