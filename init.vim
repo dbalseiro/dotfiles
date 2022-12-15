@@ -356,7 +356,7 @@ set number
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EASY EDITING VIMRC:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
+  nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :w!\|so $MYVIMRC<CR>
 nnoremap <silent> <leader>l :w!\|source %<cr>
 

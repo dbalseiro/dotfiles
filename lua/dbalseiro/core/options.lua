@@ -40,3 +40,5 @@ opt.clipboard:append("unnamedplus")
 -- make tab completions for files/buffers act like bash
 opt.wildmode = "longest,list"
 opt.wildmenu = true
+
+opt.updatetime = 300

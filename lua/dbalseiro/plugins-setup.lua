@@ -39,24 +39,24 @@ return packer.startup(function(use)
 
   use {
     'lewis6991/gitsigns.nvim',
-    -- config = function()
-    --   require'gitsigns'.setup()
-    -- end
+    config = function()
+      require'gitsigns'.setup()
+    end
   }
 
   -- telescope and tags (and telescoped tags)
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { {'nvim-lua/plenary.nvim'} },
-    -- config = function()
-    --   require'dbalseiro.plugins.telescope'.setup()
-    -- end
+    config = function()
+      require'dbalseiro.plugins.telescope'.setup()
+    end
   }
   use {
     'szw/vim-tags',
-    -- config = function()
-    --   require'dbalseiro.plugins.vim-tags'.setup()
-    -- end
+    config = function()
+      require'dbalseiro.plugins.vim-tags'.setup()
+    end
   }
 
   -- editing essentials
@@ -72,20 +72,20 @@ return packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    -- config = require'nvim-treesitter.configs'.setup {
-    --   -- A list of parser names, or "all"
-    --   ensure_installed = { "haskell" },
-    --   -- Install parsers synchronously (only applied to `ensure_installed`)
-    --   sync_install = false,
-    --   -- Automatically install missing parsers when entering buffer
-    --   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-    --   auto_install = false,
-    --   highlight = {
-    --     -- `false` will disable the whole extension
-    --     enable = true,
-    --     additional_vim_regex_highlighting = true,
-    --   },
-    -- }
+    config = require'nvim-treesitter.configs'.setup {
+      -- A list of parser names, or "all"
+      ensure_installed = { "haskell" },
+      -- Install parsers synchronously (only applied to `ensure_installed`)
+      sync_install = false,
+      -- Automatically install missing parsers when entering buffer
+      -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+      auto_install = false,
+      highlight = {
+        -- `false` will disable the whole extension
+        enable = true,
+        additional_vim_regex_highlighting = true,
+      },
+    }
   }
 
   -- COMPLETION
@@ -94,22 +94,25 @@ return packer.startup(function(use)
     requires = {
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
-      -- { "onsails/lspkind.nvim" }
+      { 'hrsh7th/cmp-vsnip' },
+      { 'hrsh7th/vim-vsnip' },
+      { "onsails/lspkind.nvim" }
     },
-    -- config = require'dbalseiro.plugins.completion'.setup()
+    config = require'dbalseiro.plugins.completion'.setup()
   }
 
   -- LSP
-  -- use {
-  --   "neovim/nvim-lspconfig",
-  --   requires = {
-  --     { "williamboman/mason.nvim" },
-  --     { "williamboman/mason-lspconfig.nvim" },
-  --     { "hrsh7th/cmp-nvim-lsp" },
-  --     { "glepnir/lspsaga.nvim", branch = "main" },
-  --   },
-  --   config = require'dbalseiro.plugins.lsp'.setup()
-  -- }
+  use {
+    "neovim/nvim-lspconfig",
+    requires = {
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "glepnir/lspsaga.nvim", branch = "main" },
+      { 'mfussenegger/nvim-lint' },
+    },
+    config = require'dbalseiro.plugins.lsp'.setup()
+  }
 
   if packer_bootstrap then
     require'packer'.sync()

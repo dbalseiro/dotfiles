@@ -2,8 +2,6 @@ vim.g.mapleader = ","
 
 local map = require("dbalseiro.utils").map
 
-local k = vim.keymap
-
 -- clear search highlighting
 map("n", "<leader><cr>", ':nohlsearch|let @/=""<cr>', { silent = true })
 
