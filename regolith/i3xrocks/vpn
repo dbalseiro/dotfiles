@@ -1,8 +1,0 @@
-#!/bin/bash
-
-nmcli -terse -color no con |
-awk -F: ' $3 == "vpn" && $4 != "" { print $1 } '
-
-# color
-echo
-echo "#FF4136"

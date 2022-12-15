@@ -1,6 +1,0 @@
-#!/bin/sh
-DATE_FORMAT=`xrescat i3xrocks.date.format "+ %m-%d %H:%M "`
-color_light="#555"
-color_dark="#aaa"
-color=$color_dark
-echo "<span color='$color'><span font='TerminessTTF Nerd Font 14'></span>`date -d "+1 min" "$DATE_FORMAT"` </span>"

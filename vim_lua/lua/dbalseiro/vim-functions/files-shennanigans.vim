@@ -21,7 +21,9 @@ function! DuplicateFile()
   if new_name != '' && new_name != old_name
     exec ':saveas ' . new_name
     redraw!
+    return 0
   endif
+  return 1
 endfunction
 map <leader>d :call DuplicateFile()<cr>
 
@@ -30,9 +32,11 @@ map <leader>d :call DuplicateFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
   let old_name = expand('%')
-  call DuplicateFile()
-  exec ':silent !rm ' . old_name
-  redraw!
+  let status = DuplicateFile()
+  if status == 0
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
 endfunction
 map <space>r :call RenameFile()<cr>
 

@@ -1,5 +1,0 @@
-! Typeface: Monoid Nerd Font
-#define typeface_bar_glyph  Monoid Nerd Font 12
-#define typeface_bar        pango:Monoid Nerd Font 12
-#define typeface_rofi       Monoid Nerd Font 12
-#define typeface_terminal   Monoid Nerd Font:pixelsize=16:antialias=true:autohint=true
