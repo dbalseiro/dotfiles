@@ -18,6 +18,9 @@ function M.setup()
       component_separators = '',
       theme = 'tokyonight'
     },
+    sections = {
+      lualine_c = {'%F'}
+    },
     tabline = {
       lualine_a = {'buffers'},
       lualine_b = {},
