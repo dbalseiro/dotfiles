@@ -14,7 +14,7 @@ function M.setup()
 
   lspconfig.hls.setup({})
 
-  lspsaga.init_lsp_saga {
+  lspsaga.setup {
     move_in_saga = { prev = '<up>',next = '<down>'},
     definition_action_keys = { edit = '<cr>'},
   }
