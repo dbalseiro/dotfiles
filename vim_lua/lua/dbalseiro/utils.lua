@@ -10,7 +10,8 @@ end
 
 function M.source_vim(fn)
   local path = os.getenv("MYVIMRC"):gsub("init%.lua$", "")
-  vim.cmd("source "..path.."lua/dbalseiro/vim-functions/"..fn..".vim")
+  local file = path.."lua/dbalseiro/vim-functions/"..fn..".vim"
+  vim.cmd("source "..file)
 end
 
 return M

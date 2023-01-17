@@ -1,3 +1,6 @@
+"reset the leader key for sonme reason
+let mapleader=","
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check if the dir exists before creating a file (and ask for creation)   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,5 +60,5 @@ function! TrimEndLines()
   call setpos('.', save_cursor)
 endfunction
 nnoremap <leader>b :call TrimEndLines()<cr>
-" au BufWritePre * call TrimEndLines()
+autocmd BufWritePre * call TrimEndLines()
 

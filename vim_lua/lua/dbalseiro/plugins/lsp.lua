@@ -27,8 +27,8 @@ function M.setup()
       buffer = bufnr
     }
     keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<cr>", opts)
-    keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-    keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<cr>", opts)
+    keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+    keymap.set("n", "gD", "<cmd>Lspsaga peek_definition<cr>", opts)
     keymap.set("n", "<space>a", "<cmd>Lspsaga code_action<cr>", opts)
     keymap.set("n", "<space>r", "<cmd>Lspsaga rename<cr>", opts)
     keymap.set("n", "<space>d", "<cmd>Lspsaga show_cursor_diagnostics<cr>", opts)
@@ -45,6 +45,12 @@ function M.setup()
     vim.lsp.diagnostic.on_publish_diagnostics, {
       virtual_text = false,
       underline = true,
+      float = {
+        show_header = true,
+        source = 'if_many',
+        border = 'rounded',
+        focusable = false,
+      },
       signs = true,
     }
   )
@@ -52,13 +58,16 @@ function M.setup()
   local lint = require'lint'
   vim.cmd([[
     autocmd CursorHold * lua vim.diagnostic.open_float()
-    autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
   ]])
+
+  -- how long it will take to show the error popup (in seconds)
+  vim.opt.updatetime = 500
 
   -- setup hlint
   lint.linters_by_ft = {
     haskell = {'hlint'}
   }
+
   vim.cmd([[
     autocmd BufWritePost * lua require('lint').try_lint()
   ]])

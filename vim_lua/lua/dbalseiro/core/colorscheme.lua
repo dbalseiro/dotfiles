@@ -9,6 +9,6 @@ end
 vim.cmd [[
   augroup schema_ft
     au!
-    autocmd BufNewFile,BufRead *.schema set syntax=graphql
+    autocmd BufNewFile,BufRead *.schema set ft=graphql
   augroup END
 ]]

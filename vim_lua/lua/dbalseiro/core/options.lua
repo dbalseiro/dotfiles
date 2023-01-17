@@ -41,4 +41,3 @@ opt.clipboard:append("unnamedplus")
 opt.wildmode = "longest,list"
 opt.wildmenu = true
 
-opt.updatetime = 300

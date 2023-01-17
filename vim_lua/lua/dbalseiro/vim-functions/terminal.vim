@@ -1,6 +1,10 @@
+"reset the leader key for sonme reason
+let mapleader=","
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TERMINAL MODE:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 command! MapTerm tnoremap <Esc> <C-\><C-n>
 command! UnMapTerm tunmap <Esc>
 MapTerm
@@ -35,8 +39,6 @@ nnoremap <leader>hl :w\|T:l %<cr>
 nnoremap <leader>hr :w\|T:r<cr>
 nnoremap <leader>hb :w\|T stack build --fast<cr>
 nnoremap <leader>hB :w\|T stack test<cr>
-
-nnoremap <leader>R :call neoterm#exec("\<C-c>")<cr>
 
 command! -bar -bang -range=0 Tcancel
       \ call neoterm#kill({ 'target': <count> })
