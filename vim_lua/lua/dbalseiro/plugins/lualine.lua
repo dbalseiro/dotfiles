@@ -16,7 +16,7 @@ function M.setup()
     options = {
       section_separators = '',
       component_separators = '',
-      theme = 'tokyonight'
+      theme = 'onedark'
     },
     sections = {
       lualine_c = {'%F'}

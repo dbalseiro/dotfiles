@@ -30,13 +30,15 @@ return packer.startup(function(use)
 
   -- visual niceties
   use {
-    'folke/tokyonight.nvim',
-    branch = 'main'
+    'navarasu/onedark.nvim'
   }
   use {
     'nvim-lualine/lualine.nvim',
     requires = { { 'nvim-tree/nvim-web-devicons' } },
-    config = require'dbalseiro.plugins.lualine'.setup()
+    config = function()
+      require'dbalseiro.core.colorscheme'.setup()
+      require'dbalseiro.plugins.lualine'.setup()
+    end
   }
 
   use {

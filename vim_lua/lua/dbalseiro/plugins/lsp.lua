@@ -60,7 +60,7 @@ function M.setup()
     autocmd CursorHold * lua vim.diagnostic.open_float()
   ]])
 
-  -- how long it will take to show the error popup (in seconds)
+  -- how long it will take to show the error popup (in miliseconds)
   vim.opt.updatetime = 500
 
   -- setup hlint
