@@ -5,7 +5,7 @@
 
 use strict;
 use warnings;
-use utf8;
+# use utf8;
 
 my $acpi;
 my $status;
@@ -18,7 +18,7 @@ my $bat_number = $ENV{BLOCK_INSTANCE} || 0;
 my $charging;
 
 # handle click
-if (@ARGV[0] == 1) {
+if (defined $ARGV[0] and $ARGV[0] == 1) {
   system("gnome-control-center", "power");
 }
 
@@ -28,7 +28,7 @@ $acpi = <ACPI>;
 close(ACPI);
 
 # fail on unexpected output
-if ($acpi !~ /: (\w+), (\d+)%/) {
+if ($acpi !~ /: ([\w\s]+), (\d+)%/) {
   die "$acpi\n";
 }
 
@@ -71,5 +71,5 @@ my $text_color_dark="aaa";
 my $text_color_light="555";
 my $text_color=$text_color_dark;
 
-printf "<span><span color='%s' font='TerminessTTF Nerd Font 14'>%s </span><span color='#%s'>%s</span>%s</span>\n", $icon_color, $icon, $text_color, $full_text;
+printf "<span><span color='%s' font='TerminessTTF Nerd Font 14'>%s </span><span color='#%s'>%s</span></span>\n", $icon_color, $icon, $text_color, $full_text;
 exit(0);

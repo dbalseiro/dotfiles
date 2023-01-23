@@ -59,6 +59,7 @@ min_width=60%
 #
 # The battery instance defaults to 0.
 [battery]
+# instance=1
 label=
 interval=60
 
