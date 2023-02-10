@@ -2,11 +2,20 @@ local M = {}
 
 function M.setup()
   vim.opt.background = "dark"
-
-  require('onedark').setup {
-    style = 'cool'
-  }
-  require('onedark').load()
+  vim.cmd "colorscheme nightfox"
+  -- require('onedark').setup {
+  --   style = 'cool'
+  -- }
+  -- require('onedark').load()
+  require('nightfox').setup({
+    options = {
+      styles = {
+        comments = "italic",
+        keywords = "bold",
+        types = "bold,italic",
+      }
+    }
+  })
 
   vim.cmd [[
     augroup schema_ft

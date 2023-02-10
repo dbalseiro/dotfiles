@@ -29,6 +29,7 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- visual niceties
+  use "EdenEast/nightfox.nvim" -- Packer
   use {
     'navarasu/onedark.nvim'
   }
@@ -47,6 +48,19 @@ return packer.startup(function(use)
       require'gitsigns'.setup()
     end
   }
+
+  -- Unless you are still migrating, remove the deprecated commands from v1.x
+  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+      }
+    }
 
   -- telescope and tags (and telescoped tags)
   use {

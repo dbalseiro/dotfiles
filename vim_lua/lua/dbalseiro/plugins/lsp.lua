@@ -7,12 +7,17 @@ function M.setup()
   local lspsaga = require("lspsaga")
   local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-  mason.setup()
-  mason_lspconfig.setup {
-    ensure_installed = { "hls" }
+  mason.setup {
+    pip = {
+      upgrade_pip = true
+    }
   }
 
+  mason_lspconfig.setup {
+    ensure_installed = { "hls", "pyright" }
+  }
   lspconfig.hls.setup({})
+  lspconfig.pyright.setup({})
 
   lspsaga.setup {
     move_in_saga = { prev = '<up>',next = '<down>'},
