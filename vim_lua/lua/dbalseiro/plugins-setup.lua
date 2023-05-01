@@ -33,13 +33,20 @@ return packer.startup(function(use)
   use {
     'navarasu/onedark.nvim'
   }
+  --use {
+    --'nvim-lualine/lualine.nvim',
+    --requires = { { 'nvim-tree/nvim-web-devicons' } },
+    --config = function()
+      --require'dbalseiro.plugins.lualine'.setup()
+    --end
+  --}
+
   use {
-    'nvim-lualine/lualine.nvim',
-    requires = { { 'nvim-tree/nvim-web-devicons' } },
-    config = function()
-      require'dbalseiro.core.colorscheme'.setup()
-      require'dbalseiro.plugins.lualine'.setup()
-    end
+      'romgrk/barbar.nvim',
+      requires = { { 'nvim-tree/nvim-web-devicons' } },
+      config = function()
+        require'dbalseiro.core.colorscheme'.setup()
+      end
   }
 
   use {

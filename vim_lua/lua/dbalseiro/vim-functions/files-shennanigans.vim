@@ -60,5 +60,8 @@ function! TrimEndLines()
   call setpos('.', save_cursor)
 endfunction
 nnoremap <leader>b :call TrimEndLines()<cr>
-autocmd BufWritePre * call TrimEndLines()
+
+" TODO: Add a global variable to set/unset auto trim end lines
+" it should be online so probably wat to put the if inside the autocmd
+" autocmd BufWritePre * call TrimEndLines()
 
