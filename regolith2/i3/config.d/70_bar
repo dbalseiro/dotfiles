@@ -29,16 +29,6 @@ bar {
   strip_workspace_numbers $i3-wm.bar.stripworkspacenumbers
 
   colors {
-      # LIGHT
-      background "#ffffff"
-      statusline # $i3-wm.bar.statusline.color
-      separator  # $i3-wm.bar.separator.color
-
-#                      BORDER  BACKGROUND TEXT
-      focused_workspace  $i3-wm.bar.workspace.focused.border.color      "#feafea"  "#282a36"
-      active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
-      inactive_workspace $i3-wm.bar.workspace.inactive.border.color     "#cacaca" "#505050" #  "#abb2bf"
-      urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       "#fefe0f"    $i3-wm.bar.workspace.urgent.text.color
 
       # Create variables from Xresources for i3bars's look.
       # active_tab_foreground   #1a1b26
@@ -47,19 +37,30 @@ bar {
       # inactive_tab_foreground #ff9e64
       # inactive_tab_background #1a1b26
 
-      # DARK
-      # background "#000000"
-      # statusline $i3-wm.bar.statusline.color
-      # separator  $i3-wm.bar.separator.color
+      # LIGHT
+       background "#ffffff"
+       statusline # $i3-wm.bar.statusline.color
+       separator  # $i3-wm.bar.separator.color
+ 
+       #                  BORDER                                         BACKGROUND                                      TEXT
+       focused_workspace  $i3-wm.bar.workspace.focused.border.color      "#feafea"  "#282a36"
+       active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
+       inactive_workspace $i3-wm.bar.workspace.inactive.border.color     "#cacaca" "#505050" #  "#abb2bf"
+       urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       "#fefe0f"    $i3-wm.bar.workspace.urgent.text.color
 
-#     #                    BORDER  BACKGROUND TEXT
-      # focused_workspace  $i3-wm.bar.workspace.focused.border.color      "#7aa2f7"  "#1a1b26"
-      # active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
-      # inactive_workspace $i3-wm.bar.workspace.inactive.border.color     "#1a1b26" "#7aa2f7"
-      # urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       $i3-wm.bar.workspace.urgent.background.color    $i3-wm.bar.workspace.urgent.text.color
-      # background $i3-wm.bar.background.color
-      # statusline $i3-wm.bar.statusline.color
-      # separator  $i3-wm.bar.separator.color
+      # DARK
+#       background "#000000"
+#       statusline $i3-wm.bar.statusline.color
+#       separator  $i3-wm.bar.separator.color
+# 
+# #     #                    BORDER  BACKGROUND TEXT
+#       focused_workspace  $i3-wm.bar.workspace.focused.border.color      "#7aa2f7"  "#1a1b26"
+#       active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
+#       inactive_workspace $i3-wm.bar.workspace.inactive.border.color     "#1a1b26" "#7aa2f7"
+#       urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       $i3-wm.bar.workspace.urgent.background.color    $i3-wm.bar.workspace.urgent.text.color
+#       background $i3-wm.bar.background.color
+#       statusline $i3-wm.bar.statusline.color
+#       separator  $i3-wm.bar.separator.color
 
   }
 }

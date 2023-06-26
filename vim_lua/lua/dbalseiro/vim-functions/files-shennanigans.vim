@@ -54,14 +54,20 @@ autocmd BufReadPost *
 "^ center buffer around cursor when opening file
 autocmd BufRead * normal zz
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" EOL trimming stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! TrimEndLines()
-  let save_cursor = getpos(".")
+  let l:save_cursor = getpos(".")
   :silent! %s/\s*$//
-  call setpos('.', save_cursor)
+  call setpos('.', l:save_cursor)
 endfunction
 nnoremap <leader>b :call TrimEndLines()<cr>
 
-" TODO: Add a global variable to set/unset auto trim end lines
-" it should be online so probably wat to put the if inside the autocmd
-" autocmd BufWritePre * call TrimEndLines()
+let g:autotrim = v:true
+autocmd BufWritePre *
+  \ if g:autotrim | call TrimEndLines() | endif
+
+command! SwitchAutotrim let g:autotrim = !g:autotrim
 

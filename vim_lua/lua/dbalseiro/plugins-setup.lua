@@ -29,24 +29,17 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- visual niceties
+  use { 'projekt0n/github-nvim-theme' }
   use "EdenEast/nightfox.nvim" -- Packer
   use {
     'navarasu/onedark.nvim'
   }
-  --use {
-    --'nvim-lualine/lualine.nvim',
-    --requires = { { 'nvim-tree/nvim-web-devicons' } },
-    --config = function()
-      --require'dbalseiro.plugins.lualine'.setup()
-    --end
-  --}
-
   use {
-      'romgrk/barbar.nvim',
-      requires = { { 'nvim-tree/nvim-web-devicons' } },
-      config = function()
-        require'dbalseiro.core.colorscheme'.setup()
-      end
+    'nvim-lualine/lualine.nvim',
+    requires = { { 'nvim-tree/nvim-web-devicons' } },
+    config = function()
+      require'dbalseiro.plugins.lualine'.setup()
+    end
   }
 
   use {
@@ -54,6 +47,14 @@ return packer.startup(function(use)
     config = function()
       require'gitsigns'.setup()
     end
+  }
+
+  use {
+      'romgrk/barbar.nvim',
+      requires = { { 'nvim-tree/nvim-web-devicons' }, { 'lewis6991/gitsigns.nvim' } },
+      config = function()
+        require'dbalseiro.core.colorscheme'.setup()
+      end
   }
 
   -- Unless you are still migrating, remove the deprecated commands from v1.x
@@ -66,7 +67,19 @@ return packer.startup(function(use)
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
-      }
+      },
+      config = function()
+        require("neo-tree").setup({
+          default_component_configs = {
+            git_status = {
+              symbols = {
+                -- Change type
+                untracked = "?",
+              }
+            }
+          }
+        })
+      end
     }
 
   -- telescope and tags (and telescoped tags)
@@ -143,6 +156,15 @@ return packer.startup(function(use)
       { 'mfussenegger/nvim-lint' },
     },
     config = require'dbalseiro.plugins.lsp'.setup()
+  }
+
+  -- STARTUP SCREEN
+  use {
+    "startup-nvim/startup.nvim",
+    requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+    config = function()
+      require"startup".setup()
+    end
   }
 
   if packer_bootstrap then
