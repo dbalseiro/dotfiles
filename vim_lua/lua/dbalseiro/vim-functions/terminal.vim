@@ -13,7 +13,8 @@ au TermOpen * setlocal nonumber norelativenumber
 """""""""
 " SHIMS "
 """""""""
-nmap <leader>gf ,.<c-w>F<c-w>H:vertical resize +18<cr>
+nmap <leader>gf ,.<c-w>F<c-w>H:vertical resize +18<cr><a-l>A<a-h>
+nmap <leader>n <a-l>{j,gf
 nmap <c-leftmouse> <leftmouse>,gf
 
 " test bash scripts

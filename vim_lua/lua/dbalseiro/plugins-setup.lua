@@ -29,7 +29,12 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- visual niceties
-  use { 'projekt0n/github-nvim-theme' }
+  use ({
+    'projekt0n/github-nvim-theme',
+    config = function()
+      require'dbalseiro.core.colorscheme'.setup()
+    end
+  })
   use "EdenEast/nightfox.nvim" -- Packer
   use {
     'navarasu/onedark.nvim'
@@ -53,7 +58,7 @@ return packer.startup(function(use)
       'romgrk/barbar.nvim',
       requires = { { 'nvim-tree/nvim-web-devicons' }, { 'lewis6991/gitsigns.nvim' } },
       config = function()
-        require'dbalseiro.core.colorscheme'.setup()
+        -- require'dbalseiro.core.colorscheme'.setup()
       end
   }
 

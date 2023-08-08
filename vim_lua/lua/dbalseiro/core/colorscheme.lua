@@ -1,12 +1,11 @@
 local M = {}
 
 function M.setup()
-  -- vim.opt.background = "dark"
-  vim.opt.background = "light"
-  vim.cmd "colorscheme github_light"
-  -- vim.cmd "colorscheme onedark"
+  vim.opt.background = "dark"
+  -- vim.opt.background = "light"
+  -- vim.cmd "colorscheme dayfox"
   -- require('onedark').setup {
-  --   style = 'cool'
+  --  style = 'cool'
   -- }
   -- require('onedark').load()
   -- require('nightfox').setup({
@@ -17,7 +16,8 @@ function M.setup()
   --       types = "bold,italic",
   --     }
   --   }
-  -- })
+  -- vim.cmd "colorscheme github_dark"
+  vim.cmd "colorscheme onedark"
   vim.cmd [[
     augroup schema_ft
       au!

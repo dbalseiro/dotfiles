@@ -29,7 +29,7 @@ opt.list = true
 opt.listchars = "eol:¬,tab:▸ ,trail:·,nbsp:·"
 
 -- misc
-opt.pastetoggle = "<F2>"
+-- opt.pastetoggle = "<F2>" -- OBSOLETED IN NVIM
 opt.swapfile = false
 opt.backup = false
 opt.writebackup = false

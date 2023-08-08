@@ -58,6 +58,16 @@ autocmd BufRead * normal zz
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EOL trimming stuff
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:autotrim = v:true
+
+function! PrintAutotrimStatus()
+  if g:autotrim
+    echo "Autotrim is now ON"
+  else
+    echo "Autotrim is now OFF"
+  endif
+endfunction
+
 function! TrimEndLines()
   let l:save_cursor = getpos(".")
   :silent! %s/\s*$//
@@ -65,9 +75,8 @@ function! TrimEndLines()
 endfunction
 nnoremap <leader>b :call TrimEndLines()<cr>
 
-let g:autotrim = v:true
 autocmd BufWritePre *
   \ if g:autotrim | call TrimEndLines() | endif
 
-command! SwitchAutotrim let g:autotrim = !g:autotrim
+command! SwitchAutotrim let g:autotrim = !g:autotrim | call PrintAutotrimStatus()
 
