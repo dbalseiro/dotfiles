@@ -9,6 +9,7 @@ precmd () {
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias vim='nvim'
+alias pvim='poetry run vim'
 alias gs='~/bin/gs'
 alias cat=batcat
 alias k=kubectl
@@ -34,8 +35,9 @@ setopt no_hist_verify
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
-source <(kubectl completion zsh)
+export PATH="$PATH:$HOME/.config/emacs/bin"
+# source <(kubectl completion zsh)
 
 [ -f "/home/dbalseiro/.ghcup/env" ] && source "/home/dbalseiro/.ghcup/env" # ghcup-env
 
+eval "$(/home/dbalseiro/.rbenv/bin/rbenv init - zsh)"
