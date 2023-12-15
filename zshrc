@@ -41,3 +41,4 @@ export PATH="$PATH:$HOME/.config/emacs/bin"
 [ -f "/home/dbalseiro/.ghcup/env" ] && source "/home/dbalseiro/.ghcup/env" # ghcup-env
 
 eval "$(/home/dbalseiro/.rbenv/bin/rbenv init - zsh)"
+

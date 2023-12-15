@@ -292,10 +292,12 @@ window_padding_width 2.0
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border)
-# active_border_color #afa
+
+active_border_color #afa
 
 #: The color for the border of the active window
-# inactive_border_color #666
+
+inactive_border_color #666
 
 #: The color for the border of inactive windows
 
@@ -319,7 +321,7 @@ window_padding_width 2.0
 
 #: Tab bar {{{
 
-# tab_bar_edge top
+# tab_bar_edge bottom
 
 #: Which edge to show the tab bar on, top or bottom
 
@@ -346,11 +348,12 @@ tab_bar_style fade
 
 #: The separator between tabs in the tab bar when using separator as
 #: the tab_bar_style.
-# active_tab_foreground   #1a1b26
-# active_tab_background   #98c379
+
+active_tab_foreground   #1a1b26
+active_tab_background   #98c379
 # active_tab_font_style   bold-italic
-# inactive_tab_foreground #ff9e64
-# inactive_tab_background #1a1b26
+inactive_tab_foreground #ff9e64
+inactive_tab_background #1a1b26
 # inactive_tab_font_style normal
 
 #: Tab bar colors and styles
@@ -899,9 +902,3 @@ include kitty_tokyonight_night.conf
 ### LIGHT MODE
 # include one.conf
 # include GitHub_Light.conf
-
-
-# BEGIN_KITTY_THEME
-# Catppuccin-Frappe
-include current-theme.conf
-# END_KITTY_THEME
