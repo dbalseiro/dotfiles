@@ -14,7 +14,7 @@ au TermOpen * setlocal nonumber norelativenumber
 " SHIMS "
 """""""""
 nmap <leader>gf ,.<c-w>F<c-w>H:vertical resize +18<cr><a-l>A<a-h>
-nmap <leader>n <a-l>{j,gf
+nmap <leader>n <a-l>{j,gfzz
 nmap <c-leftmouse> <leftmouse>,gf
 
 " test bash scripts
@@ -46,5 +46,4 @@ command! -bar -bang -range=0 Tcancel
 
 nnoremap <leader>r :w\|T !!<cr>
 nnoremap <leader>R :w\|Tcancel\|T !!<cr>
-
 

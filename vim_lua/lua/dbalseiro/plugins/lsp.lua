@@ -31,14 +31,12 @@ function M.setup()
       silent = true,
       buffer = bufnr
     }
-    keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<cr>", opts)
+    keymap.set("n", "gf", "<cmd>Lspsaga finder<cr>", opts)
     keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
     keymap.set("n", "gD", "<cmd>Lspsaga peek_definition<cr>", opts)
     keymap.set("n", "<space>a", "<cmd>Lspsaga code_action<cr>", opts)
     keymap.set("n", "<space>r", "<cmd>Lspsaga rename<cr>", opts)
-    keymap.set("n", "<space>d", "<cmd>Lspsaga show_cursor_diagnostics<cr>", opts)
-    keymap.set("n", "[d", "<cmd>Lspsaga diagnostics_show_prev<cr>", opts)
-    keymap.set("n", "]d", "<cmd>Lspsaga diagnostics_show_next<cr>", opts)
+    keymap.set("n", "<space>d", "<cmd>Lspsaga show_workspace_diagnostics<cr>", opts)
     keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
   end
 

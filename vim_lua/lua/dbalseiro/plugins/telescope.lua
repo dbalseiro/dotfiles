@@ -3,7 +3,7 @@ local M = {}
 local map = require("dbalseiro.utils").map
 local builtin = require("telescope.builtin")
 
-local function is_git()
+function is_git()
   vim.fn.system({"git", "status"})
   return vim.v.shell_error == 0
 end

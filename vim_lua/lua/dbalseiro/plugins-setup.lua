@@ -27,17 +27,13 @@ end
 
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
-
   -- visual niceties
-  use ({
-    'projekt0n/github-nvim-theme',
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin",
     config = function()
       require'dbalseiro.core.colorscheme'.setup()
     end
-  })
-  use "EdenEast/nightfox.nvim" -- Packer
-  use {
-    'navarasu/onedark.nvim'
   }
   use {
     'nvim-lualine/lualine.nvim',
@@ -54,16 +50,12 @@ return packer.startup(function(use)
     end
   }
 
-  use {
-      'romgrk/barbar.nvim',
-      requires = { { 'nvim-tree/nvim-web-devicons' }, { 'lewis6991/gitsigns.nvim' } },
-      config = function()
-        -- require'dbalseiro.core.colorscheme'.setup()
-      end
+use {
+     'romgrk/barbar.nvim',
+     requires = { { 'nvim-tree/nvim-web-devicons' }, { 'lewis6991/gitsigns.nvim' } },
+     config = require'dbalseiro.core.colorscheme'.setup()
   }
 
-  -- Unless you are still migrating, remove the deprecated commands from v1.x
-  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
   use {
     "nvim-neo-tree/neo-tree.nvim",
@@ -80,6 +72,7 @@ return packer.startup(function(use)
               symbols = {
                 -- Change type
                 untracked = "?",
+                unstaged  = "☐"
               }
             }
           }
@@ -87,9 +80,11 @@ return packer.startup(function(use)
       end
     }
 
+  -- Unless you are still migrating, remove the deprecated commands from v1.x
+  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
   -- telescope and tags (and telescoped tags)
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    'nvim-telescope/telescope.nvim', branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} },
     config = function()
       require'dbalseiro.plugins.telescope'.setup()
@@ -123,7 +118,7 @@ return packer.startup(function(use)
     run = ':TSUpdate',
     config = require'nvim-treesitter.configs'.setup {
       -- A list of parser names, or "all"
-      ensure_installed = { "haskell", "graphql" },
+      ensure_installed = { "haskell", "graphql", "python" },
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
       -- Automatically install missing parsers when entering buffer
@@ -136,6 +131,9 @@ return packer.startup(function(use)
       },
     }
   }
+
+  -- -- HASKELL SPECIFIC
+  -- use 'sdiehl/vim-ormolu'
 
   -- COMPLETION
   use {
@@ -156,20 +154,11 @@ return packer.startup(function(use)
     requires = {
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "glepnir/lspsaga.nvim", branch = "main" },
       { 'mfussenegger/nvim-lint' },
+      { "glepnir/lspsaga.nvim", branch = "main" },
+      { "hrsh7th/cmp-nvim-lsp" },
     },
     config = require'dbalseiro.plugins.lsp'.setup()
-  }
-
-  -- STARTUP SCREEN
-  use {
-    "startup-nvim/startup.nvim",
-    requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
-    config = function()
-      require"startup".setup()
-    end
   }
 
   if packer_bootstrap then
