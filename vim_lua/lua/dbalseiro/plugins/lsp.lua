@@ -40,6 +40,9 @@ function M.setup()
     keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
   end
 
+  lspconfig["pyright"].setup {
+    on_attach = on_attach
+  }
   lspconfig["hls"].setup {
     capabilities = cmp_nvim_lsp.default_capabilities(),
     on_attach = on_attach
