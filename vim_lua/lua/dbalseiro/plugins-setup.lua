@@ -50,12 +50,19 @@ return packer.startup(function(use)
     end
   }
 
-use {
+  use {
      'romgrk/barbar.nvim',
      requires = { { 'nvim-tree/nvim-web-devicons' }, { 'lewis6991/gitsigns.nvim' } },
      config = require'dbalseiro.core.colorscheme'.setup()
   }
 
+
+  use {
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup()
+    end,
+  }
 
   use {
     "nvim-neo-tree/neo-tree.nvim",
@@ -66,7 +73,7 @@ use {
         "MunifTanjim/nui.nvim",
       },
       config = function()
-        require("neo-tree").setup({
+        require"neo-tree".setup {
           default_component_configs = {
             git_status = {
               symbols = {
@@ -76,7 +83,8 @@ use {
               }
             }
           }
-        })
+        }
+        require"dbalseiro.plugins.neotree".setup()
       end
     }
 
