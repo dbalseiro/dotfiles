@@ -42,7 +42,7 @@ function M.setup()
       ["K"] = "Lspsaga hover_doc",
     }
     for k, cmd in pairs(mapping) do
-      keymap.set("n", "gf", "<cmd>"..cmd.."<cr>", opts)
+      keymap.set("n", k, "<cmd>"..cmd.."<cr>", opts)
     end
   end
 

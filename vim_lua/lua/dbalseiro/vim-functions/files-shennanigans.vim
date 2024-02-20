@@ -8,8 +8,20 @@ augroup vimrc-auto-mkdir
   autocmd!
   autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 
+  function! s:starts_with(haystack, needle)
+    return a:haystack[0:len(a:needle)-1] ==# a:needle
+  endfunction
+
+  function! s:confirm(dir)
+    if s:starts_with(a:dir, "oil:")
+      return v:false
+    else
+      return input("'" . a:dir . "' Create? [y/N]") =~? '^y\%[es]$'
+    endif
+  endfunction
+
   function! s:auto_mkdir(dir, force)
-    if !isdirectory(a:dir) && (a:force || input("'" . a:dir . "' Create? [y/N]") =~? '^y\%[es]$')
+    if !isdirectory(a:dir) && (a:force || s:confirm(a:dir))
       call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
     endif
   endfunction
