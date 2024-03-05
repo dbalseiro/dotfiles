@@ -42,3 +42,5 @@ export PATH="$PATH:$HOME/.config/emacs/bin"
 
 eval "$(/home/dbalseiro/.rbenv/bin/rbenv init - zsh)"
 
+# GO Binaries
+PATH=$PATH:/usr/local/go/bin

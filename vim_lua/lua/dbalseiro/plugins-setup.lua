@@ -163,10 +163,23 @@ return packer.startup(function(use)
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { 'mfussenegger/nvim-lint' },
-      { "glepnir/lspsaga.nvim", branch = "main" },
+      { "nvimdev/lspsaga.nvim", branch = "main" },
       { "hrsh7th/cmp-nvim-lsp" },
     },
     config = require'dbalseiro.plugins.lsp'.setup()
+  }
+
+  -- Highlight TODO comments
+  use {
+    "folke/todo-comments.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = require 'todo-comments'.setup()
+  }
+
+  use {
+    "folke/trouble.nvim",
+    requires = { "nvim-tree/nvim-web-devicons" },
+    config = require 'trouble'.setup()
   }
 
   if packer_bootstrap then
