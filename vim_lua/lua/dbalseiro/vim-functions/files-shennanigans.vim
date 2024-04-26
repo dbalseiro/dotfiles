@@ -1,4 +1,4 @@
-"reset the leader key for sonme reason
+"re-set the leader key for sonme reason
 let mapleader=","
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

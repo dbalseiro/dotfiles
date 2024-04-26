@@ -51,6 +51,11 @@ function M.setup()
   }
   lspconfig["hls"].setup {
     capabilities = cmp_nvim_lsp.default_capabilities(),
+    settings = {
+      haskell = {
+        formattingProvider = 'stylish-haskell',
+      },
+    },
     on_attach = on_attach
   }
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

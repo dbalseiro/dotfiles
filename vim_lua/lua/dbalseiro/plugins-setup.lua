@@ -35,6 +35,7 @@ return packer.startup(function(use)
       require'dbalseiro.core.colorscheme'.setup()
     end
   }
+  use 'Mofiqul/vscode.nvim'
   use {
     'nvim-lualine/lualine.nvim',
     requires = { { 'nvim-tree/nvim-web-devicons' } },
