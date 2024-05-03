@@ -27,20 +27,12 @@ antigen init ~/.antigenrc
 
 export PATH=~/.local/bin:~/bin:$PATH
 
+
+export ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[blue]%} "
+setopt no_hist_verify
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-setopt no_hist_verify
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="$PATH:$HOME/.config/emacs/bin"
-# source <(kubectl completion zsh)
-
-[ -f "/home/dbalseiro/.ghcup/env" ] && source "/home/dbalseiro/.ghcup/env" # ghcup-env
-
-eval "$(/home/dbalseiro/.rbenv/bin/rbenv init - zsh)"
-
-# GO Binaries
-PATH=$PATH:/usr/local/go/bin
+[ -f "/home/dbalseiro/.ghcup/env" ] && . "/home/dbalseiro/.ghcup/env" # ghcup-env

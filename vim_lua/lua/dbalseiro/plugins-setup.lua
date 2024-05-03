@@ -28,6 +28,7 @@ end
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
   -- visual niceties
+  use {  "folke/tokyonight.nvim" }
   use {
     "catppuccin/nvim",
     as = "catppuccin",
@@ -35,7 +36,7 @@ return packer.startup(function(use)
       require'dbalseiro.core.colorscheme'.setup()
     end
   }
-  use 'Mofiqul/vscode.nvim'
+
   use {
     'nvim-lualine/lualine.nvim',
     requires = { { 'nvim-tree/nvim-web-devicons' } },
@@ -89,22 +90,22 @@ return packer.startup(function(use)
       end
     }
 
-  -- Unless you are still migrating, remove the deprecated commands from v1.x
-  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-  -- telescope and tags (and telescoped tags)
-  use {
-    'nvim-telescope/telescope.nvim', branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} },
-    config = function()
-      require'dbalseiro.plugins.telescope'.setup()
-    end
-  }
-  use {
-    'szw/vim-tags',
-    config = function()
-      require'dbalseiro.plugins.vim-tags'.setup()
-    end
-  }
+   -- Unless you are still migrating, remove the deprecated commands from v1.x
+   vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+   -- telescope and tags (and telescoped tags)
+   use {
+     'nvim-telescope/telescope.nvim', branch = '0.1.x',
+     requires = { {'nvim-lua/plenary.nvim'} },
+     config = function()
+       require'dbalseiro.plugins.telescope'.setup()
+     end
+   }
+   use {
+     'szw/vim-tags',
+     config = function()
+       require'dbalseiro.plugins.vim-tags'.setup()
+     end
+   }
 
   -- editing essentials
   use 'scrooloose/nerdcommenter'

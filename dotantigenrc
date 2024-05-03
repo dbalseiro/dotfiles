@@ -3,6 +3,7 @@ antigen use oh-my-zsh
 
 # Load bundles from the default repo (oh-my-zsh)
 antigen bundle git
+antigen bundle git-prompt
 antigen bundle command-not-found
 antigen bundle wfxr/forgit
 # antigen bundle docker
@@ -13,8 +14,10 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Select theme
-# antigen theme $HOME/code/lambda-mod-zsh-theme --no-local-clone
-antigen theme dbalseiro/lambda-mod-zsh-theme
+antigen theme $HOME/code/lambda-mod-zsh-theme --no-local-clone
+# antigen theme dbalseiro/lambda-mod-zsh-theme
+# antigen theme halfo/lambda-mod-zsh-theme
+# antigen theme robbyrussell
 
 # Tell Antigen that you're done
 antigen apply

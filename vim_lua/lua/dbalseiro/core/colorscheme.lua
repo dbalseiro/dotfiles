@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
   vim.opt.background = "dark"
-  vim.cmd "colorscheme catppuccin-frappe"
+  vim.cmd "colorscheme tokyonight"
 
   -- Juvo schema files look like graphql
   vim.cmd [[
