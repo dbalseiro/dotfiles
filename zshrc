@@ -1,4 +1,4 @@
-DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE=true
 DISABLE_MAGIC_FUNCTIONS=true
 
 # title bar prompt
@@ -27,7 +27,6 @@ antigen init ~/.antigenrc
 
 export PATH=~/.local/bin:~/bin:$PATH
 
-
 export ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[blue]%} "
 setopt no_hist_verify
 
@@ -36,3 +35,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f "/home/dbalseiro/.ghcup/env" ] && . "/home/dbalseiro/.ghcup/env" # ghcup-env
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+eval "$(pyenv virtualenv-init -)"
+
+# eval "$(oh-my-posh init zsh --config ~/.dbalseiro.omp.json)"
+
+export TERM=xterm-256color
+

@@ -33,7 +33,9 @@ return packer.startup(function(use)
     "catppuccin/nvim",
     as = "catppuccin",
     config = function()
-      require'dbalseiro.core.colorscheme'.setup()
+      require'dbalseiro.core.colorscheme'.setup({
+        flavour = "frappe"
+      })
     end
   }
 

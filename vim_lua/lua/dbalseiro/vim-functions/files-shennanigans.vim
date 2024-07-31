@@ -66,6 +66,15 @@ autocmd BufReadPost *
 "^ center buffer around cursor when opening file
 autocmd BufRead * normal zz
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RETAB the whole file
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! ToTabs()
+  set tabstop=2
+  set noexpandtab
+  %retab!
+endfunction
+command! ToTabs call ToTabs()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EOL trimming stuff

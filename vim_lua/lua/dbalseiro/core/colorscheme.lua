@@ -1,9 +1,9 @@
 local M = {}
 
 function M.setup()
+  -- require("tokyonight").setup({ style = "night" })
   vim.opt.background = "dark"
-  vim.cmd "colorscheme tokyonight"
-
+  vim.cmd "colorscheme catppuccin"
   -- Juvo schema files look like graphql
   vim.cmd [[
     augroup schema_ft
