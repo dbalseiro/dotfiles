@@ -44,5 +44,6 @@ eval "$(pyenv virtualenv-init -)"
 
 # eval "$(oh-my-posh init zsh --config ~/.dbalseiro.omp.json)"
 
+export PATH=~/go/bin:$PATH
 export TERM=xterm-256color
 

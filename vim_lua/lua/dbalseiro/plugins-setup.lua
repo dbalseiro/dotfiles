@@ -186,6 +186,8 @@ return packer.startup(function(use)
     config = require 'trouble'.setup()
   }
 
+  use 'fatih/vim-go'
+
   if packer_bootstrap then
     require'packer'.sync()
   end
