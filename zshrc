@@ -47,3 +47,4 @@ eval "$(pyenv virtualenv-init -)"
 export PATH=~/go/bin:$PATH
 export TERM=xterm-256color
 
+alias ls=lsd
