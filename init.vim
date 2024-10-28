@@ -745,3 +745,5 @@ augroup schema_ft
   au!
   autocmd BufNewFile,BufRead *.schema   set syntax=graphql
 augroup END
+
+" otro comentatio
