@@ -1,9 +1,13 @@
 local M = {}
 
 function M.setup()
-  -- require("tokyonight").setup({ style = "night" })
-  vim.opt.background = "dark"
+  -- Check the OS's theme to change between light and dark
+  local handle = io.popen("sw info")
+  local result = handle:read("*a")
+  handle:close()
+  vim.opt.background = result == "BreezeLight" and "light" or "dark"
   vim.cmd "colorscheme catppuccin"
+
   -- Juvo schema files look like graphql
   vim.cmd [[
     augroup schema_ft
@@ -11,11 +15,6 @@ function M.setup()
       autocmd BufNewFile,BufRead *.schema set ft=graphql
     augroup END
   ]]
-  -- vim.cmd [[
-  --   " transparent background
-  --   hi Normal guibg=NONE ctermbg=NONE
-  --   hi NormalNC guibg=NONE ctermbg=NONE
-  -- ]]
 end
 
 return M
