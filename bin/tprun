@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+
+function getPort() {
+  cat src/EnvVariables.hs |
+  grep -P '^defaultPort = \d+$' |
+  awk '{ print $3 }'
+}
+
+function getExe() {
+  echo `basename $(pwd)`-exe
+}
+
+stack build --fast && MY_PORT_OPTIONAL=$(getPort) stack exec -- $(getExe) | lv
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+set -ueo pipefail
+
+function whereami() {
+  basename `pwd`
+}
+
+kubectl get pods |
+grep $(whereami) |
+awk '{print $1}' |
+head -1 |
+xargs kubectl logs --follow |
+lv

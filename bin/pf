@@ -1,0 +1,67 @@
+#!/bin/bash
+set -euo pipefail
+
+base=`which $(basename $0)`
+
+function get-configs() {
+	local fname=$base.$1.cfg
+	if [ -f $fname ]; then
+		cat $fname
+	else
+		echo "Environment not found: $1" >&2
+		exit 2
+	fi
+}
+
+env=staging
+set +u
+if [ "$1" != "" ]; then
+	env=$1
+fi
+set -u
+
+template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
+
+
+function get-single-pod() {
+	kubectl get pods -n$2 --selector=$3=$1 |
+	tail -1 |
+	awk '{print $1}'
+}
+
+function get-pods() {
+	local pods=$(get-single-pod $@)
+	if [ "$pods" == "" ]; then
+		exit 1
+	fi
+	echo $pods
+}
+
+function do-process() {
+	read ns app port selector <<< $@
+	echo Remote $app@$ns:$port/$selector
+	pod=$(get-pods $app $ns $selector)
+	podport=$(kubectl get pod -n$ns $pod --template="$template")
+	echo Port-Forwarding to $pod $port:$podport
+	kubectl port-forward pods/$pod -n$ns $port:$podport
+	echo
+}
+
+function kill-previous() {
+	echo Preemptively killing port forwards
+	set +e
+	pkill -f "kubectl port-forward"
+	set -e
+}
+
+kill-previous
+if [ "$1" == "--just-kill" ]; then
+  exit 0
+fi
+
+
+get-configs $env | while read config; do
+	do-process $config &
+	sleep 5
+done
+

@@ -1,0 +1,77 @@
+#!/bin/bash
+
+function isNumber() {
+  [[ $1 =~ [0-9].* ]]
+}
+
+function errxit() {
+  ERRORLEVEL=1
+  if isNumber $1; then
+    ERRORLEVEL=$1
+    shift
+  fi
+
+  echo $@
+  exit $ERRORLEVEL
+}
+
+which fzf > /dev/null 2>&1 || errxit 'You need `fzf` for this to work'
+
+function getLogs() {
+  $kubectl -n $1 get pods
+}
+
+function filterNames() {
+  tail +2 | cut -f1 -d' '
+}
+
+function removeRandomStrings() {
+  # dev-amazing-email-generator-69dff5b5f6-q2zwc -> dev-amazing-email-generator
+  # it'll remove the last two strings from the name
+  awk -F- 'OFS="-" {
+    NF -= 2;
+    print;
+  }'
+}
+
+TMP_FILE=/tmp/k8s-instances
+
+kubectl="kubectl"
+if [ "$1" == "-l" ]; then
+  kubectl="microk8s.kubectl"
+  shift
+fi
+
+
+cached=0
+if [ "$1" == "cached" ]; then
+  cached=1
+  shift
+fi
+
+context=dev
+test "$1" != "" && context=$1
+
+if [ $cached -eq 0 -o ! -f $TMP_FILE ]; then
+  getLogs $context |
+  filterNames |
+  tee $TMP_FILE |
+  removeRandomStrings > $TMP_FILE.1
+fi
+test -s $TMP_FILE || errxit 2 'Not connected to the VPN?'
+
+function getServer() {
+  grep $1 $TMP_FILE | head -1
+}
+
+function displayDialog() {
+  cat $TMP_FILE.1 | fzf
+}
+
+while true; do
+  choice=`displayDialog`
+  if [ -z $choice ]; then
+    exit
+  fi
+  $kubectl -n $context logs --follow=true $(getServer $choice) | lv
+done

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ctx=$(kubectl ctx -c)
+ns=$(kubectl ns -c)
+out=$ctx/$ns
+
+case "$out" in
+  "juvo-ilab-prod/staging"|"juvo-ilab-prod/prod"|"juvo-dev/dev"|"juvo-dev/platform")
+    out=$ns ;;
+esac
+echo "$out"
+

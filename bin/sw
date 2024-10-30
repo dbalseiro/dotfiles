@@ -1,0 +1,60 @@
+#!/bin/bash
+set -euo pipefail
+
+function errxit() {
+  echo $@
+  exit 1
+}
+
+function format-current-theme() {
+  sed 's/ (.*)//' |
+  sed 's/ \* //'
+}
+
+function get-current-theme() {
+  plasma-apply-colorscheme --list-schemes |
+  grep "current color scheme" |
+  format-current-theme
+}
+
+function kitty-style() {
+  case $1 in
+    Light) echo Catppuccin-Latte ;;
+    Dark)  echo Catppuccin-Mocha ;;
+    *) errxit "[$0] $1 Invalid Value" ;;
+  esac
+}
+
+function lower() {
+  echo $1 | tr '[:upper:]' '[:lower:]'
+}
+
+function set-nvim-background() {
+  echo ":set background=$(lower $1)<cr>"
+}
+
+function execute-in-all-nvim-instances() {
+  echo "Setting $@ in neovim running instances"
+  nvr --serverlist |
+  while read server; do
+    echo accessing $server
+    nvr --remote-send "$@" --servername $server
+  done
+}
+
+function switch-to() {
+  plasma-apply-colorscheme Breeze$1
+  execute-in-all-nvim-instances "$(set-nvim-background $1)"
+  kitty kitten theme --reload-in=all $(kitty-style $1)
+}
+
+case $@ in
+  info) echo -n $(get-current-theme) ;;
+  "")
+    case $(get-current-theme) in
+      BreezeLight) switch-to Dark ;;
+      BreezeDark)  switch-to Light ;;
+      *) errxit "Unknown Theme :(" ;;
+    esac
+    ;;
+esac

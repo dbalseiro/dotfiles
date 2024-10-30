@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ "$1" == "line" ]; then
+  fblog -t 'datetime' -a 'topic' <&0
+else
+  cmd='. as $line | try fromjson catch $line'
+  if [ "$1" == "" ]; then
+    echo > /dev/null
+  else
+    cmd+=" | $@"
+  fi
+
+  jq -R -r "$cmd"
+fi

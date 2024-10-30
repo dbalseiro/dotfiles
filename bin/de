@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ENV_FILE=".env"
+
+if [ "$1" == "-f" ]; then
+  ENV_FILE=$2
+  shift 2
+fi
+
+dotenv -f $ENV_FILE "$@"

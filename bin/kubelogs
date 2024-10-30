@@ -1,0 +1,57 @@
+#!/bin/bash
+
+function getLogs() {
+  kubectl -n dev get pods
+}
+
+function filterNames() {
+  tail +2 | cut -f1 -d' '
+}
+
+function removeRandomStrings() {
+  # dev-amazing-email-generator-69dff5b5f6-q2zwc -> dev-amazing-email-generator
+  # it'll remove the last two strings from the name
+  awk -F- 'OFS="-" {
+    NF -= 2;
+    print;
+  }'
+}
+
+function numerate() {
+  local N=0
+  while read r; do
+    let N+=1
+    printf "%3s %s\n" "$N" "$r"
+  done
+}
+
+TMP_FILE=/tmp/k8s-instances
+
+function options() {
+  cat $TMP_FILE.1 |
+  numerate |
+  xargs echo
+}
+
+function displayDialog() {
+  dialog --menu "Select a container:" 22 76 16 $(options) 2>&1 >/dev/tty || echo 0
+}
+
+function getServer() {
+  selection=`cat $TMP_FILE.1 | tail +$choice | head -1`
+  grep $selection $TMP_FILE | head -1
+}
+
+if [ "$1" != "cached" -o ! -f $TMP_FILE ]; then
+  getLogs | filterNames > $TMP_FILE
+  cat $TMP_FILE | removeRandomStrings | sort > $TMP_FILE.1
+fi
+
+while true; do
+  choice=`displayDialog`
+  if [ $choice -eq 0 ]; then
+    clear
+    exit
+  fi
+  kubectl -n dev logs $(getServer $choice) | less
+done

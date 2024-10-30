@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+
+branches=/tmp/branches
+git branch > $branches
+
+function current-branch() {
+  git branch |
+  grep "^\*" |
+  cut -c3-
+}
+
+function all-branches-cept-master () {
+  local current=$(current-branch)
+  grep -v $current $branches
+}
+
+function am-i-in-master() {
+  local branch=$(awk '/^\*/ { print $2 }' $branches)
+  test "$branch" == "master" -o "$branch" == "main"
+}
+
+function errxit() {
+  echo $@
+  exit 1
+}
+
+am-i-in-master || errxit "You are not in master"
+
+git prune
+all-branches-cept-master | while read b; do
+  git branch -D $b
+done
+
