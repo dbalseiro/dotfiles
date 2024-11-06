@@ -30,7 +30,7 @@ function lower() {
 }
 
 function set-nvim-background() {
-  echo ":set background=$(lower $1)<cr>"
+  echo "<esc>:set background=$(lower $1)<cr>"
 }
 
 function execute-in-all-nvim-instances() {
@@ -44,7 +44,7 @@ function execute-in-all-nvim-instances() {
 
 function switch-to() {
   plasma-apply-colorscheme Breeze$1
-  execute-in-all-nvim-instances "$(set-nvim-background $1)"
+  execute-in-all-nvim-instances "$(set-nvim-background $@)"
   kitty kitten theme --reload-in=all $(kitty-style $1)
 }
 
