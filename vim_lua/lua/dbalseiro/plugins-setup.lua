@@ -26,6 +26,7 @@ if not status then
 end
 
 return packer.startup(function(use)
+  use 'jecaro/ghcid-error-file.nvim'
   use 'wbthomason/packer.nvim'
   -- visual niceties
   use {  "folke/tokyonight.nvim" }
@@ -177,7 +178,7 @@ return packer.startup(function(use)
   use {
     "folke/todo-comments.nvim",
     requires = { "nvim-lua/plenary.nvim" },
-    config = require 'todo-comments'.setup()
+    config = require 'dbalseiro.plugins.todo-comments'.setup()
   }
 
   use {
@@ -185,8 +186,6 @@ return packer.startup(function(use)
     requires = { "nvim-tree/nvim-web-devicons" },
     config = require 'trouble'.setup()
   }
-
-  use 'fatih/vim-go'
 
   if packer_bootstrap then
     require'packer'.sync()

@@ -21,7 +21,7 @@ nmap <c-leftmouse> <leftmouse>,gf
 nnoremap <leader>t :w\|!./%<CR>
 
 function! Terminal()
-  exec ":T ghcid -c 'stack repl'"
+  exec ":T ghcid -c 'stack repl' -o errors.err"
   exec ":vsplit"
   exec ":vertical resize +18"
   " go to the previous buffer
