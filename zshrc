@@ -9,7 +9,7 @@ precmd () {
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias vim='nvim'
-alias pvim='poetry run vim'
+alias pvim='poetry run nvim'
 alias gs='~/bin/gs'
 alias cat=batcat
 alias k=kubectl
@@ -48,3 +48,4 @@ export PATH=~/go/bin:$PATH
 export TERM=xterm-256color
 
 alias ls=lsd
+eval "$(zoxide init zsh)"
