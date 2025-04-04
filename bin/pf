@@ -3,6 +3,12 @@ set -euo pipefail
 
 base=`which $(basename $0)`
 
+if [ $# == 0 ]; then
+	ls -1t $base.*.cfg |
+	sed "s|.*$base\.\(.*\)\.cfg|\1|"
+	exit 0
+fi
+
 function get-configs() {
 	local fname=$base.$1.cfg
 	if [ -f $fname ]; then
@@ -13,13 +19,7 @@ function get-configs() {
 	fi
 }
 
-env=staging
-set +u
-if [ "$1" != "" ]; then
-	env=$1
-fi
-set -u
-
+env=$1
 template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
 
 
