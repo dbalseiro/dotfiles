@@ -50,3 +50,5 @@ export TERM=xterm-256color
 
 alias ls=lsd
 eval "$(zoxide init zsh)"
+
+export GPG_TTY=$(tty)
