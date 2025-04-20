@@ -11,7 +11,7 @@ alias pbpaste='xclip -selection clipboard -o'
 alias vim='nvim'
 alias pvim='poetry run nvim'
 alias gs='~/bin/gs'
-alias cat=batcat
+alias cat=bat
 alias k=kubectl
 alias mk='minikube kubectl --'
 alias lastcommit='git log -n 1 --pretty=format:"%H" | pbcopy'
