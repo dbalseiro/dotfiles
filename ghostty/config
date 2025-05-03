@@ -1,0 +1,14 @@
+#   /home/dbalseiro/.config/ghostty/config
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+theme = catppuccin-mocha
+font-family = FireCode Nerd Font
+font-size = 10
+window-titlebar-background = #d13600
+gtk-titlebar-hide-when-maximized = true
+shell-integration-features = no-cursor,sudo,no-title
+cursor-style = block
+adjust-cell-height = 15%
+mouse-hide-while-typing = true
