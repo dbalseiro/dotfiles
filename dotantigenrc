@@ -5,14 +5,14 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle git-prompt
 antigen bundle command-not-found
-antigen bundle wfxr/forgit
+# antigen bundle wfxr/forgit
 # antigen bundle docker
 
 # Load bundles from external repos
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
-
+# antigen bundle atuinsh/atuin@main
 # Select theme
 # antigen theme $HOME/code/lambda-mod-zsh-theme --no-local-clone
 antigen theme dbalseiro/lambda-mod-zsh-theme

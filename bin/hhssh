@@ -4,6 +4,6 @@ set -xueo pipefail
 
 az account set -n "Holland & Hart Enterprise Dev/Test"
 az ssh config -g devops -n bastion -f ~/.ssh/bastion.config
-ssh -D 1337 -F ~/.ssh/bastion.conf  -f -C -q -N devops-bastion
+ssh -D 1337 -F ~/.ssh/bastion.config  -f -C -q -N devops-bastion
 az account set -n "Juris Futura DEV/Test"
 
