@@ -3,11 +3,13 @@
 # Run `ghostty +show-config --default --docs` to view a list of
 # all available config options and their default values.
 #
-theme = catppuccin-mocha
-font-family = FireCode Nerd Font
-font-size = 10
+theme = dark:catppuccin-mocha,light:catppuccin-latte
+# theme = catppuccin-mocha
+
+font-family = VictorMono Nerd Font
+font-size = 12
 window-titlebar-background = #d13600
-gtk-titlebar-hide-when-maximized = true
+gtk-titlebar-hide-when-maximized = false
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
 adjust-cell-height = 15%

@@ -18,6 +18,7 @@ alias lastcommit='git log -n 1 --pretty=format:"%H" | pbcopy'
 alias build='stack test && prune-juice'
 alias tmuxa='tmux attach || tmux'
 alias zed=zeditor
+alias k9s='~/.config/k9s/switch-skin.sh && k9s "$@"'
 
 export BAT_THEME=TwoDark
 export EDITOR=nvim
@@ -59,3 +60,8 @@ export GPG_TTY=$(tty)
 alias claude="/home/dbalseiro/.claude/local/claude"
 eval "$(op completion zsh)"; compdef _op op
 eval $(juvo --zsh-completion-script `which juvo`)
+eval "$(gh copilot alias -- zsh)"
+. "$HOME/.cargo/env"
+
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+

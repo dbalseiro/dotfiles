@@ -30,6 +30,9 @@
   # plus-style = "syntax #012800"
   # minus-style = "syntax #340001"
   syntax-theme = OneHalfDark
+  # syntax-theme = OneHalfLight
   navigate = true
 [commit]
   verbose = true
+[init]
+  defaultBranch = main

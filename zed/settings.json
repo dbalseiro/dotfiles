@@ -7,13 +7,29 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "model_parameters": [],
+    "default_profile": "write"
+  },
+  "terminal": {
+    "font_family": "VictorMono Nerd Font Propo",
+    "font_size": 12
+  },
   "buffer_line_height": "comfortable",
-  "ui_font_size": 18,
-  "buffer_font_size": 14,
-  "buffer_font_family": "VictorMono Nerd Font",
+  "ui_font_size": 14,
+  "buffer_font_weight": 600,
+  "buffer_font_features": {
+    "calt": true
+  },
+  "buffer_font_size": 12,
+  "buffer_font_family": "VictorMono Nerd Font Propo",
   "theme": {
     "mode": "system",
-    "light": "Catppuccin Mocha",
+    "light": "Catppuccin Latte",
     "dark": "Catppuccin Mocha"
   },
   "vim_mode": true,
