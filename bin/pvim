@@ -1,0 +1,21 @@
+#!/bin/bash
+if [ "$1" == "" ]; then
+  poetry run nvim
+fi
+
+set -euo pipefail
+
+POSSIBLE_PATH=$1
+
+if [ -e "$POSSIBLE_PATH" ]; then
+  if [ -d "$POSSIBLE_PATH" ]; then
+    PATH_TO_OPEN="$POSSIBLE_PATH"
+  else
+    PATH_TO_OPEN=$(dirname "$POSSIBLE_PATH")
+  fi
+  poetry -P "$PATH_TO_OPEN" run -- nvim "$@"
+else
+  poetry run nvim "$@"
+fi
+
+
