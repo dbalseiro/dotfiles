@@ -13,3 +13,9 @@ end
 
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup {
+  require('dbalseiro.plugins.colorscheme'),
+  require('dbalseiro.plugins.filetree'),
+  require('dbalseiro.plugins.git'),
+}
