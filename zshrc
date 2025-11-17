@@ -37,26 +37,20 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 eval "$(pyenv virtualenv-init -)"
 
-# eval "$(oh-my-posh init zsh --config ~/.dbalseiro.omp.json)"
-
 export PATH=~/go/bin:$PATH
 export TERM=xterm-256color
 
 alias ls=lsd
-# eval "$(zoxide init zsh)"
-
 export GPG_TTY=$(tty)
 
 [ -f "/home/dbalseiro/.ghcup/env" ] && . "/home/dbalseiro/.ghcup/env" # ghcup-env
 
-# eval "$(atuin init zsh)"
 alias claude="/home/dbalseiro/.claude/local/claude"
 eval "$(op completion zsh)"; compdef _op op
 eval $(juvo --zsh-completion-script `which juvo`)
