@@ -14,8 +14,18 @@ end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup {
-  require('dbalseiro.plugins.colorscheme'),
-  require('dbalseiro.plugins.filetree'),
-  require('dbalseiro.plugins.git'),
-}
+require("lazy").setup({
+	require("dbalseiro.plugins.colorscheme"),
+	require("dbalseiro.plugins.filetree"),
+	require("dbalseiro.plugins.git"),
+	require("dbalseiro.plugins.format"),
+	require("dbalseiro.plugins.fuzzyfind"),
+	require("dbalseiro.plugins.lsp"),
+	require("dbalseiro.plugins.completions"),
+	require("dbalseiro.plugins.terminal"),
+})
+
+-- Vim stuff from before i switched to neovim
+local src = require("dbalseiro.utils.vim").source_vim
+src("better-backspace")
+src("files-shennanigans")
