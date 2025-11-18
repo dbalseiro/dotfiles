@@ -23,7 +23,7 @@ return {
 			vim.cmd.colorscheme("catppuccin")
 			-- vim.cmd.colorscheme 'borland'
 
-			if vim.cmd.color() ~= "catppuccin" then
+			if vim.cmd.color() == "catppuccin" then
 				local fhandle = io.popen("sw info")
 				local result = ""
 				if fhandle ~= nil then
@@ -33,17 +33,17 @@ return {
 				vim.opt.background = result == "BreezeDark" and "dark" or "light"
 				if result ~= "BreezeDark" then
 					vim.cmd([[
-            highlight TelescopeNormal         guibg=#eff1f5 guifg=#4c4f69
-            highlight TelescopeBorder         guibg=#eff1f5 guifg=#ccd0da
-            highlight TelescopePromptNormal   guibg=#e6e9ef guifg=#4c4f69
-            highlight TelescopePromptBorder   guibg=#e6e9ef guifg=#ccd0da
-            highlight TelescopeResultsNormal  guibg=#eff1f5 guifg=#4c4f69
-            highlight TelescopeResultsBorder  guibg=#eff1f5 guifg=#ccd0da
-            highlight TelescopePreviewNormal  guibg=#f5f7fa guifg=#4c4f69
-            highlight TelescopePreviewBorder  guibg=#f5f7fa guifg=#ccd0da
-            highlight TelescopeSelection      guibg=#e6e9ef
-            highlight TelescopeMatching       guifg=#7287fd gui=bold
-          ]])
+						highlight TelescopeNormal         guibg=#eff1f5 guifg=#4c4f69
+						highlight TelescopeBorder         guibg=#eff1f5 guifg=#ccd0da
+						highlight TelescopePromptNormal   guibg=#e6e9ef guifg=#4c4f69
+						highlight TelescopePromptBorder   guibg=#e6e9ef guifg=#ccd0da
+						highlight TelescopeResultsNormal  guibg=#eff1f5 guifg=#4c4f69
+						highlight TelescopeResultsBorder  guibg=#eff1f5 guifg=#ccd0da
+						highlight TelescopePreviewNormal  guibg=#f5f7fa guifg=#4c4f69
+						highlight TelescopePreviewBorder  guibg=#f5f7fa guifg=#ccd0da
+						highlight TelescopeSelection      guibg=#e6e9ef
+						highlight TelescopeMatching       guifg=#7287fd gui=bold
+				]])
 
 					-- Set borders for floating windowslocal orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 					vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#eff1f5 guifg=#4c4f69]])

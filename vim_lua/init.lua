@@ -18,7 +18,7 @@ require("lazy").setup({
 	require("dbalseiro.plugins.colorscheme"),
 	require("dbalseiro.plugins.filetree"),
 	require("dbalseiro.plugins.git"),
-	require("dbalseiro.plugins.format"),
+	require("dbalseiro.plugins.format").setup(),
 	require("dbalseiro.plugins.fuzzyfind"),
 	require("dbalseiro.plugins.lsp"),
 	require("dbalseiro.plugins.completions"),
