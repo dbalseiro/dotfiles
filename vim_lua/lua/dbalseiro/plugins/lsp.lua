@@ -65,10 +65,10 @@ local function highlight_references(client_id, buffer)
 		})
 
 		vim.api.nvim_create_autocmd("LspDetach", {
-			group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+			group = vim.api.nvim_create_augroup("dbalseiro-lsp-detach", { clear = true }),
 			callback = function(event)
 				vim.lsp.buf.clear_references()
-				vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event.buf })
+				vim.api.nvim_clear_autocmds({ group = "dbalseiro-lsp-highlight", buffer = event.buf })
 			end,
 		})
 	end

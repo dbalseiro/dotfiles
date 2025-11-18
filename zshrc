@@ -19,6 +19,7 @@ alias build='stack test && prune-juice'
 alias tmuxa='tmux attach || tmux'
 alias zed=zeditor
 alias k9s='~/.config/k9s/switch-skin.sh && k9s "$@"'
+alias mc='mc --nosubshell'
 
 export BAT_THEME=TwoDark
 export EDITOR=nvim
