@@ -21,8 +21,11 @@ require("lazy").setup({
 	require("dbalseiro.plugins.format").setup(),
 	require("dbalseiro.plugins.fuzzyfind"),
 	require("dbalseiro.plugins.lsp"),
+	require("dbalseiro.plugins.llm"),
 	require("dbalseiro.plugins.completions"),
 	require("dbalseiro.plugins.terminal"),
+	-- some extra plugins
+	"tpope/vim-surround",
 })
 
 -- Vim stuff from before i switched to neovim
