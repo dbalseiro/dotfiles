@@ -24,7 +24,8 @@ require("lazy").setup({
 	require("dbalseiro.plugins.llm"),
 	require("dbalseiro.plugins.completions"),
 	require("dbalseiro.plugins.terminal"),
-	-- some extra plugins
+
+	-- some extra plugins i like
 	"tpope/vim-surround",
 })
 
