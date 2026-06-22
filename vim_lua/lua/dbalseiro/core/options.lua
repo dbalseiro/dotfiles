@@ -43,10 +43,12 @@ vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
--- Show which line your cursor is on
 vim.opt.cursorline = true
--- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Dockerfile.vim sets filetype to "Dockerfile", but Treesitter parser name is "dockerfile".
+-- Register an alias to prevent parser startup errors.
+vim.treesitter.language.register("dockerfile", "Dockerfile")
 -- use ripgrep as grep :tada:
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
