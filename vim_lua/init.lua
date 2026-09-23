@@ -27,6 +27,7 @@ require("lazy").setup({
 
 	-- some extra plugins i like
 	"tpope/vim-surround",
+	"tpope/vim-repeat",
 })
 
 -- Vim stuff from before i switched to neovim

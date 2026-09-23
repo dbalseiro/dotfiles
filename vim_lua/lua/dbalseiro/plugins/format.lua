@@ -12,6 +12,7 @@ M.setup = function()
 	})
 
 	return {
+		"isobit/vim-caddyfile",
 		"godlygeek/tabular",
 		"ekalinin/Dockerfile.vim",
 		{ -- Highlight, edit, and navigate code
@@ -67,11 +68,21 @@ M.setup = function()
 			opts = {
 				notify_on_error = false,
 				format_on_save = function(bufnr)
+					if vim.bo[bufnr].filetype == "haskell" then
+						local fourmolu_config = vim.fs.find({ "fourmolu.yaml", "fourmolu.yml" }, {
+							path = vim.api.nvim_buf_get_name(bufnr),
+							upward = true,
+						})[1]
+						if not fourmolu_config then
+							return
+						end
+					end
+
 					-- Disable "format_on_save lsp_fallback" for languages that don't
 					-- have a well standardized coding style. You can add additional
 					-- languages here or re-enable it for the disabled ones.
 					local disable_filetypes =
-						{ c = true, cpp = true, haskell = true, typescript = true, typescriptreact = true }
+						{ c = true, cpp = true, typescript = true, typescriptreact = true }
 					local lsp_format_opt
 					if disable_filetypes[vim.bo[bufnr].filetype] then
 						lsp_format_opt = "never"
@@ -84,12 +95,25 @@ M.setup = function()
 					}
 				end,
 				formatters_by_ft = {
+					haskell = { "fourmolu" },
 					lua = { "stylua" },
 					-- Conform can also run multiple formatters sequentially
 					python = { "black" },
 					--
 					-- You can use 'stop_after_first' to run the first available formatter from the list
 					-- javascript = { "prettierd", "prettier", stop_after_first = true },
+				},
+				formatters = {
+					fourmolu = {
+						cwd = function(_, context)
+							local fourmolu_config = vim.fs.find({ "fourmolu.yaml", "fourmolu.yml" }, {
+								path = context.filename,
+								upward = true,
+							})[1]
+							return fourmolu_config and vim.fs.dirname(fourmolu_config)
+						end,
+						require_cwd = true,
+					},
 				},
 			},
 		},
